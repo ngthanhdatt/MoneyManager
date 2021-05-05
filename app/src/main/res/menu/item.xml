@@ -3,20 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <item
-        android:id="@+id/s1"
+        android:id="@+id/menu_hangngay"
         android:icon="@android:drawable/btn_dialog"
-        android:title="Item"
-        app:showAsAction="always"/>
+        android:title="Hằng Ngày" />
+<!--        app:showAsAction="always"-->
     <item
-        android:id="@+id/s2"
+        android:id="@+id/menu_thongke"
         android:icon="@android:drawable/btn_dialog"
-        android:title="fdssdf"/>
+        android:title="Thống kê"/>
 
-    <item android:title="aewrew"
+    <item
+        android:title="Ví tiền"
         android:icon="@android:drawable/btn_dialog"
-        android:id="@+id/s3"/>
+        android:id="@+id/menu_vitien"/>
 
-    <item android:title="afsddfsd"
+    <item
+        android:title="Cài Đặt"
         android:icon="@android:drawable/btn_dialog"
-        android:id="@+id/s4"/>
+        android:id="@+id/menu_caidat"/>
 </menu>

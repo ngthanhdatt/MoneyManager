@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ThongKe">
+    android:orientation="vertical"
+    tools:context=".Fragment.ThongKe.ThongKeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.tabs.TabLayout
+        android:id="@+id/frag_tabLayout_thongke"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Thu" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chi" />
-
-
-
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
     </com.google.android.material.tabs.TabLayout>
 
-</FrameLayout>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/frag_viewPager_thongke"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+</LinearLayout>

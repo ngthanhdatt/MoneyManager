@@ -67,6 +67,22 @@
         android:textColorHint="#FFFFFF"
         android:textSize="20sp" />
 
+    <EditText
+        android:id="@+id/reg_etRePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/et"
+        app:backgroundTint="@color/et"
+        android:hint="Re-enter Password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp" />
+
     <Button
         android:id="@+id/btnSignup"
         android:layout_width="match_parent"

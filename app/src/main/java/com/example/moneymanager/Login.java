@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.moneymanager.Database.UserHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -30,19 +31,37 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        firebaseAuthentication = FirebaseAuth.getInstance();
-//        if(firebaseAuthentication.getCurrentUser() != null){
-//            Intent intent = new Intent(Login.this, com.example.moneymanager.MainActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
-//
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         tvSingup = (TextView) findViewById(R.id.tvSignup);
         tvForgotPass = (TextView) findViewById(R.id.tvForgotPass);
-//
+
+//        FirebaseAuth firebaseAuthentication = FirebaseAuth.getInstance();
+//        if(firebaseAuthentication.getCurrentUser() != null){
+//            Intent intent = new Intent(Login.this, com.example.moneymanager.MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserHelper db = new UserHelper(getBaseContext());
+                String email = etEmail.getText().toString().trim();
+                String pass = etPassword.getText().toString().trim();
+                if(email.isEmpty()) {
+                    Toast.makeText(Login.this, "Please enter email", Toast.LENGTH_SHORT).show();
+                    return;
+                }if(pass.isEmpty()){
+                    Toast.makeText(Login.this, "Please enter password", Toast.LENGTH_SHORT).show();
+                    return;
+                } else{
+                    db.checkLogin(email, pass);
+                }
+            }
+        });
+
 //        btnLogin.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

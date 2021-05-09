@@ -14,18 +14,18 @@ import android.widget.Toast;
 
 import com.example.moneymanager.Database.UserHelper;
 import com.example.moneymanager.Model.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+//import com.google.android.gms.tasks.OnCompleteListener;
+//import com.google.android.gms.tasks.Task;
+//import com.google.firebase.auth.AuthResult;
+//import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseUser;
 
 public class Registration extends AppCompatActivity {
 
     private EditText reg_etName, reg_etEmail, reg_etPassword, reg_etRepassword;
     private Button btnSignup;
     private TextView tvLogin;
-    private FirebaseAuth mAuth;
+//    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

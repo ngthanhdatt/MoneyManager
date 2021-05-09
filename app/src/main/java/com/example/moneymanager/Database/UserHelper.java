@@ -23,18 +23,17 @@ public class UserHelper extends SQLiteOpenHelper {
 
     public UserHelper(Context context){
         super(context, DATABASE_NAME, null, 1);
-        Log.d("DB Manager","DB Manager");
-        this.context = context;
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sqlQuery = "CREATE TABLE "+TABLE_NAME +" (" +
-                COLUMN_ID +" integer primary key, "+
+        String sqlQuery = "CREATE TABLE " + TABLE_NAME + "(" +
+                COLUMN_ID + " INTERGER primary key,"+
                 COLUMN_NAME + " TEXT, "+
-                COLUMN_EMAIL +" TEXT, "+
-                COLUMN_PASSWORD+ " TEXT"+ ")";
+                COLUMN_EMAIL + " TEXT, "+
+                COLUMN_PASSWORD + " TEXT"+ ")";
         db.execSQL(sqlQuery);
-        Toast.makeText(context, "Create Database successfully", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "Create Database successfully", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -46,7 +45,7 @@ public class UserHelper extends SQLiteOpenHelper {
 
     public void addUser(User user){
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues =new ContentValues();
+        ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_NAME, user.getName());
         contentValues.put(COLUMN_EMAIL, user.getEmail());
         contentValues.put(COLUMN_PASSWORD, user.getPassword());

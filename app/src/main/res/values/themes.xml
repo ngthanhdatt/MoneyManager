@@ -14,13 +14,4 @@
         <!-- Customize your theme here. -->
     </style>
 
-<!--    <style name="Theme.MoneyManager.NoActionBar">-->
-<!--        <item name="windowActionBar">false</item>-->
-<!--        <item name="windowNoTitle">true</item>-->
-<!--    </style>-->
-
-<!--    <style name="Theme.MoneyManager.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">-->
-<!--    </style>-->
-
-<!--    <style name="Theme.MoneyManager.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
 </resources>

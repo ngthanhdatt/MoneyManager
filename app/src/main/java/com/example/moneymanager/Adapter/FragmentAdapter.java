@@ -8,7 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.example.moneymanager.Fragment.CaiDatFragment;
 import com.example.moneymanager.Fragment.ThongKe.ThongKeFragment;
 import com.example.moneymanager.Fragment.ThuChi.ThuChiFragment;
-import com.example.moneymanager.Fragment.ViTienFragment;
+import com.example.moneymanager.Fragment.ViTien.ViTienFragment;
 
 public class FragmentAdapter extends FragmentStateAdapter {
 

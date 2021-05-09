@@ -82,10 +82,8 @@ public class ThongKeFragment extends Fragment {
                 year = c.get(Calendar.YEAR);
                 month = c.get(Calendar.MONTH);
                 date = c.get(Calendar.DAY_OF_MONTH);
-
                 DatePickerDialog datePickerDialog = new DatePickerDialog(viewPager2.getContext(),
                         new DatePickerDialog.OnDateSetListener() {
-
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
@@ -105,16 +103,13 @@ public class ThongKeFragment extends Fragment {
                 year = c.get(Calendar.YEAR);
                 month = c.get(Calendar.MONTH);
                 date = c.get(Calendar.DAY_OF_MONTH);
-
                 DatePickerDialog datePickerDialog = new DatePickerDialog(viewPager2.getContext(),
                         new DatePickerDialog.OnDateSetListener() {
-
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
 
                                 end.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-
                             }
                         }, year, month, date);
                 datePickerDialog.show();

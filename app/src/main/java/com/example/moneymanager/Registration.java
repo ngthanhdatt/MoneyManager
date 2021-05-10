@@ -32,49 +32,49 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        UserHelper db = new UserHelper(getBaseContext());
 //        mAuth = FirebaseAuth.getInstance();
 
         reg_etName = (EditText)findViewById(R.id.reg_etName);
         reg_etEmail = (EditText)findViewById(R.id.reg_etEmail);
         reg_etPassword = (EditText)findViewById(R.id.reg_etPassword);
-        reg_etRepassword = (EditText) findViewById(R.id.reg_etRePassword);
-        btnSignup = (Button) findViewById(R.id.btnSignup);
-        tvLogin = (TextView) findViewById(R.id.tvLogin);
+//        reg_etRepassword = (EditText) findViewById(R.id.reg_etRePassword);
+        btnSignup = (Button)findViewById(R.id.btnSignup);
+        tvLogin = (TextView)findViewById(R.id.tvLogin);
 
+//        User user = new User("son","son", "son123");
+//        db.addUser(user);
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserHelper db = new UserHelper(getBaseContext());
-                String reg_name = reg_etName.getText().toString().trim();
-                String reg_email = reg_etEmail.getText().toString().trim();
-                String reg_pass = reg_etPassword.getText().toString().trim();
-                String reg_repass = reg_etRepassword.getText().toString().trim();
 
-                User reg_user = new User(reg_name, reg_email, reg_pass);
+                String name = reg_etName.getText().toString().trim();
+                String email = reg_etEmail.getText().toString().trim();
+                String pass = reg_etPassword.getText().toString().trim();
+//                String reg_repass = reg_etRepassword.getText().toString().trim();
 
-                if(reg_email.isEmpty()){
+                User user = new User(name, email, pass);
+//                db.addUser(user);
+
+                if(email.isEmpty()){
                     Toast.makeText(Registration.this, "Please enter valid email", Toast.LENGTH_SHORT).show();
                     return;
-                }if(reg_pass.isEmpty()){
+                }if(pass.isEmpty()){
                     Toast.makeText(Registration.this, "Please enter valid password", Toast.LENGTH_SHORT).show();
                     return;
-                }if(reg_repass.isEmpty()){
-                    Toast.makeText(Registration.this, "Please enter Repassword", Toast.LENGTH_SHORT).show();
-                    return;
-                }else{
-                    if(reg_pass == reg_repass){
-                        db.addUser(reg_user);
-                        Toast.makeText(Registration.this, "Registed successfully!!!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(Registration.this, com.example.moneymanager.Login.class);
-                        startActivity(intent);
-                        finish();
-                    }else {
-                        Toast.makeText(Registration.this, "Enter password and repassword again!!!", Toast.LENGTH_SHORT).show();
-                        Reset();
-                    }
                 }
-
+//                if(repass.isEmpty()){
+//                    Toast.makeText(Registration.this, "Please enter Repassword", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+                else{
+                    db.addUser(user);
+                    Toast.makeText(Registration.this, "Registed successfully!!!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Registration.this, com.example.moneymanager.Login.class);
+                    startActivity(intent);
+                    finish();
+                }
            }
         });
 
@@ -121,8 +121,6 @@ public class Registration extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 
     protected void Reset(){

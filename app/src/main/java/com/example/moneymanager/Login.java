@@ -31,6 +31,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        UserHelper db = new UserHelper(getBaseContext());
+
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);
@@ -47,7 +49,6 @@ public class Login extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserHelper db = new UserHelper(getBaseContext());
                 String email = etEmail.getText().toString().trim();
                 String pass = etPassword.getText().toString().trim();
                 if(email.isEmpty()) {
@@ -57,7 +58,16 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "Please enter password", Toast.LENGTH_SHORT).show();
                     return;
                 } else{
-                    db.checkLogin(email, pass);
+                    Boolean check = db.checkLogin(email, pass);
+                    if(check == false){
+                        Toast.makeText(Login.this, "Login failed, enter again!!!", Toast.LENGTH_SHORT).show();
+//                        Reset();
+                    }else {
+                        Toast.makeText(Login.this, "Login successfully!!!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Login.this, com.example.moneymanager.MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             }
         });
@@ -96,5 +106,9 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    protected void Reset(){
+        etEmail.setText("");
+        etPassword.setText("");
     }
 }

@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyManager">
+        <activity android:name=".Them_ThuChi"></activity>
         <activity android:name=".Login" />
         <activity android:name=".Registration">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

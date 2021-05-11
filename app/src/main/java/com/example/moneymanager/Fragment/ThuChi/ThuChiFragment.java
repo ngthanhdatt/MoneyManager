@@ -1,5 +1,6 @@
 package com.example.moneymanager.Fragment.ThuChi;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -7,15 +8,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 import com.example.moneymanager.Adapter.FragmentThuChiAdaper;
 import com.example.moneymanager.R;
+import com.example.moneymanager.Them_ThuChi;
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -41,7 +47,7 @@ public class ThuChiFragment extends Fragment {
 
         tabLayout = view.findViewById(R.id.frag_tabLayout_thuchi);
         viewPager2 = view.findViewById(R.id.frag_viewPager_thuchi);
-
+        FloatingActionButton add = view.findViewById(R.id.fab);
 
         FragmentThuChiAdaper fragmentThuChiAdaper = new FragmentThuChiAdaper(this.getActivity());
         viewPager2.setAdapter(fragmentThuChiAdaper);
@@ -60,5 +66,14 @@ public class ThuChiFragment extends Fragment {
                 }
             }
         }).attach();
+
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), Them_ThuChi.class);
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 }

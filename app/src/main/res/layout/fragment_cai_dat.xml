@@ -7,142 +7,168 @@
     android:orientation="vertical"
     tools:context=".Fragment.CaiDatFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/frag_Toolbar1_caidat"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <TextView
-            android:id="@+id/frag_Toolbar_caidat_TextView"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/frag_Toolbar1_caidat"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Cài đặt"
-            android:textSize="25dp"></TextView>
-    </androidx.appcompat.widget.Toolbar>
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+            <Button
+                android:id="@+id/frag_Toolbar_ThemThuChi_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="left"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/back" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/frag_Toolbar2_caidat"
+            <TextView
+                android:id="@+id/frag_Toolbar_caidat_TextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Cài đặt"
+                android:textSize="25dp"></TextView>
+        </androidx.appcompat.widget.Toolbar>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-        <Button
-            android:id="@+id/frag_viewPager_caidat_CaiDat"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/btn_shape_round"
-            android:text="Cài đặt"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="40dp"/>
-
-        <Button
-            android:id="@+id/frag_viewPager_caidat_ViTien"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/btn_shape_round"
-            android:text="Ví tiền"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="40dp"/>
-
-        <Button
-            android:id="@+id/frag_viewPager_caidat_MatKhau"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/btn_shape_round"
-            android:text="Mật khẩu"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="40dp"/>
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/frag_Toolbar3_caidat"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-        <Button
-            android:id="@+id/frag_viewPager_caidat_SaoLuu"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/btn_shape_round"
-            android:text="Sao lưu"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="40dp"/>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
 
 
-        <Button
-            android:id="@+id/frag_viewPager_caidat_PhongCach"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/btn_shape_round"
-            android:text="Phong cách"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="40dp"/>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/frag_Toolbar2_caidat"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <Button
-            android:id="@+id/frag_viewPager_caidat_PhanHoi"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/btn_shape_round"
-            android:text="Phản hồi"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="40dp"/>
-    </androidx.appcompat.widget.Toolbar>
+            <Button
+                android:id="@+id/frag_viewPager_caidat_CaiDat"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_shape_round"
+                android:text="Cài đặt"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/frag_viewPager_caidat_ViTien"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_shape_round"
+                android:text="Ví tiền"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/frag_viewPager_caidat_MatKhau"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_shape_round"
+                android:text="Mật khẩu"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/frag_Toolbar3_caidat"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <Button
+                android:id="@+id/frag_viewPager_caidat_SaoLuu"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_shape_round"
+                android:text="Sao lưu"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
 
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/frag_Toolbar4_caidat"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-        <Button
-            android:id="@+id/frag_viewPager_caidat_TroGiup"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/btn_shape_round"
-            android:text="Trợ giúp"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="40dp"/>
+            <Button
+                android:id="@+id/frag_viewPager_caidat_PhongCach"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_shape_round"
+                android:text="Phong cách"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
 
-        <Button
-            android:id="@+id/frag_viewPager_caidat_GioiThieu"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/btn_shape_round"
-            android:text="Giới thiệu"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="40dp"/>
-    </androidx.appcompat.widget.Toolbar>
+            <Button
+                android:id="@+id/frag_viewPager_caidat_PhanHoi"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_shape_round"
+                android:text="Phản hồi"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/frag_Toolbar4_caidat"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <Button
+                android:id="@+id/frag_viewPager_caidat_TroGiup"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_shape_round"
+                android:text="Trợ giúp"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/frag_viewPager_caidat_GioiThieu"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_shape_round"
+                android:text="Giới thiệu"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+        </androidx.appcompat.widget.Toolbar>
+
+    </LinearLayout>
+
 
 </LinearLayout>

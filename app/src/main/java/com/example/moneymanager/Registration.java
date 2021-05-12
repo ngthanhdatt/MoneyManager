@@ -38,7 +38,7 @@ public class Registration extends AppCompatActivity {
         reg_etName = (EditText)findViewById(R.id.reg_etName);
         reg_etEmail = (EditText)findViewById(R.id.reg_etEmail);
         reg_etPassword = (EditText)findViewById(R.id.reg_etPassword);
-//        reg_etRepassword = (EditText) findViewById(R.id.reg_etRePassword);
+        reg_etRepassword = (EditText) findViewById(R.id.reg_etRePassword);
         btnSignup = (Button)findViewById(R.id.btnSignup);
         tvLogin = (TextView)findViewById(R.id.tvLogin);
 
@@ -52,28 +52,30 @@ public class Registration extends AppCompatActivity {
                 String name = reg_etName.getText().toString().trim();
                 String email = reg_etEmail.getText().toString().trim();
                 String pass = reg_etPassword.getText().toString().trim();
-//                String reg_repass = reg_etRepassword.getText().toString().trim();
+                String repass = reg_etRepassword.getText().toString().trim();
 
                 User user = new User(name, email, pass);
 //                db.addUser(user);
 
                 if(email.isEmpty()){
-                    Toast.makeText(Registration.this, "Please enter valid email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Registration.this, "Mục email không được bỏ trống", Toast.LENGTH_SHORT).show();
                     return;
                 }if(pass.isEmpty()){
-                    Toast.makeText(Registration.this, "Please enter valid password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Registration.this, "Mật khẩu không được bỏ trống", Toast.LENGTH_SHORT).show();
                     return;
-                }
-//                if(repass.isEmpty()){
-//                    Toast.makeText(Registration.this, "Please enter Repassword", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-                else{
-                    db.addUser(user);
-                    Toast.makeText(Registration.this, "Registed successfully!!!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Registration.this, com.example.moneymanager.Login.class);
-                    startActivity(intent);
-                    finish();
+                }if(repass.isEmpty()){
+                    Toast.makeText(Registration.this, "Mục nhập lại mật khẩu không được bỏ trống", Toast.LENGTH_SHORT).show();
+                    return;
+                } else{
+                    if(pass.equals(repass)){
+                        db.addUser(user);
+                        Toast.makeText(Registration.this, "Đăng kí tài khoản thành công", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Registration.this, com.example.moneymanager.Login.class);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        Toast.makeText(Registration.this, "Mật khẩu nhập lại không đúng", Toast.LENGTH_SHORT).show();
+                    }
                 }
            }
         });

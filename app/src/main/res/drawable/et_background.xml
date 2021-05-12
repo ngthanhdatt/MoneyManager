@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/et"
-        android:state_pressed="true"/>       <!-- Hiện màu đỏ khi ấn vào nút -->
+        android:state_pressed="true"/>       
 </selector>

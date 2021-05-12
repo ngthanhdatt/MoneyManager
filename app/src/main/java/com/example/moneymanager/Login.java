@@ -52,18 +52,18 @@ public class Login extends AppCompatActivity {
                 String email = etEmail.getText().toString().trim();
                 String pass = etPassword.getText().toString().trim();
                 if(email.isEmpty()) {
-                    Toast.makeText(Login.this, "Please enter email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Mục email không được bỏ trống", Toast.LENGTH_SHORT).show();
                     return;
                 }if(pass.isEmpty()){
-                    Toast.makeText(Login.this, "Please enter password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Mật khẩu không được bỏ trống", Toast.LENGTH_SHORT).show();
                     return;
                 } else{
                     Boolean check = db.checkLogin(email, pass);
                     if(check == false){
-                        Toast.makeText(Login.this, "Login failed, enter again!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, "Đăng nhập thất bại, hãy thử lại!!!", Toast.LENGTH_SHORT).show();
 //                        Reset();
                     }else {
-                        Toast.makeText(Login.this, "Login successfully!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, "Đăng nhập thành công!!!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login.this, com.example.moneymanager.MainActivity.class);
                         startActivity(intent);
                         finish();

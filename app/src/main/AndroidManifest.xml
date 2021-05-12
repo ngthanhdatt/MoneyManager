@@ -9,16 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyManager">
-        <activity android:name=".Them_ThuChi"></activity>
+        <activity android:name=".Them_ViTien"></activity>
+        <activity android:name=".Them_ThuChi" />
         <activity android:name=".Login" />
-        <activity android:name=".Registration">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Registration" />
         <activity android:name=".Init" />
     </application>
 

@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Log In"
+        android:text="Đăng nhập"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
@@ -41,7 +41,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:background="@color/et"
-        android:hint="Password"
+        android:hint="Mật khẩu"
         android:inputType="textPassword"
         android:padding="10dp"
         android:textColor="#FFFFFF"
@@ -57,7 +57,7 @@
         android:layout_marginRight="20dp"
         android:background="@color/et"
         app:backgroundTint="@color/et"
-        android:text="Login"
+        android:text="Đăng nhập"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="18sp" />
@@ -70,18 +70,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:gravity="center_horizontal"
-        android:text="Don't have account? SignUp"
+        android:text="Chưa có tài khoản? Đăng kí ngay"
         android:textColor="#FFFFFF" />
 
-    <TextView
-        android:id="@+id/tvForgotPass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:gravity="center_horizontal"
-        android:text="Forgot/Reset Password ?"
-        android:textColor="#FFFFFF" />
 
 </LinearLayout>

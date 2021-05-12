@@ -6,14 +6,12 @@ public class ViTien implements Serializable {
     private int id;
     private String name;
     private float cost;
-    private int image;
     private User user;
 
-    public ViTien(int id, String name, float cost, int image, User user) {
+    public ViTien(int id, String name, float cost, User user) {
         this.id = id;
         this.name = name;
         this.cost = cost;
-        this.image = image;
         this.user = user;
     }
 
@@ -39,14 +37,6 @@ public class ViTien implements Serializable {
 
     public void setCost(float cost) {
         this.cost = cost;
-    }
-
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
     }
 
     public User getUser() {

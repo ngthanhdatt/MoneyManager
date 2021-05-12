@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Registration"
+        android:text="Đăng kí"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
@@ -30,7 +30,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:padding="10dp"
-        android:hint="Name"
+        android:hint="Tên của bạn"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="20sp" />
@@ -60,7 +60,23 @@
         android:layout_marginRight="20dp"
         android:background="@color/et"
         app:backgroundTint="@color/et"
-        android:hint="Password"
+        android:hint="Mật khẩu"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/reg_etRePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/et"
+        app:backgroundTint="@color/et"
+        android:hint="Nhập lại mật khẩu"
         android:inputType="textPassword"
         android:padding="10dp"
         android:textColor="#FFFFFF"
@@ -76,7 +92,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:background="@color/et"
-        android:text="Sign Up"
+        android:text="Đăng kí"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="18sp"
@@ -90,7 +106,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:gravity="center_horizontal"
-        android:text="Have account? Login"
+        android:text="Đã có tài khoản? Đăng nhập ngay"
         android:textColor="#FFFFFF" />
 
 </LinearLayout>

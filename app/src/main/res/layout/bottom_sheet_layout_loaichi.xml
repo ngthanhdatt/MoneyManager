@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:stretchColumns="0,1,2"
+    android:padding="16dp">
+
+    <TableRow>
+        <Button
+            android:text="Ăn uống"
+            android:id="@+id/loaichi_anuong"/>
+        <Button
+            android:text="Sinh hoạt"
+            android:id="@+id/loaichi_sinhhoat"/>
+        <Button
+            android:text="Giải trí"
+            android:id="@+id/loaichi_giaitri"/>
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:text="Giao thông"
+            android:id="@+id/loaichi_giaothong"/>
+        <Button
+            android:text="Sở thích"
+            android:id="@+id/loaichi_sothich"/>
+        <Button
+            android:text="Quần áo"
+            android:id="@+id/loaichi_quanao"/>
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:text="Làm đẹp"
+            android:id="@+id/loaichi_lamdep"/>
+        <Button
+            android:text="Sức khỏe"
+            android:id="@+id/loaichi_suckhoe"/>
+        <Button
+            android:text="Giáo dục"
+            android:id="@+id/loaichi_giaoduc"/>
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:text="Sự kiện"
+            android:id="@+id/loaichi_sukien"/>
+        <Button
+            android:text="Khác"
+            android:id="@+id/loaichi_khac"/>
+
+    </TableRow>
+
+
+
+</TableLayout>

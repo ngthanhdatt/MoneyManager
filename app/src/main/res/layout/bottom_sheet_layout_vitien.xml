@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:stretchColumns="0,1,2"
+    android:padding="16dp">
+
+    <TableRow>
+        <Button
+            android:text="Tiền mặt"
+            android:id="@+id/vi_tienmat"/>
+        <Button
+            android:text="TK ngân hàng"
+            android:id="@+id/vi_nganhang"/>
+        <Button
+            android:text="Thẻ tín dụng"
+            android:id="@+id/vi_tindung"/>
+    </TableRow>
+
+
+</TableLayout>

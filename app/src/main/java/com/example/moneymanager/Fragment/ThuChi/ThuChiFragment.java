@@ -47,6 +47,7 @@ public class ThuChiFragment extends Fragment {
 
         tabLayout = view.findViewById(R.id.frag_tabLayout_thuchi);
         viewPager2 = view.findViewById(R.id.frag_viewPager_thuchi);
+        FloatingActionButton add = view.findViewById(R.id.fab);
 
         FragmentThuChiAdaper fragmentThuChiAdaper = new FragmentThuChiAdaper(this.getActivity());
         viewPager2.setAdapter(fragmentThuChiAdaper);
@@ -65,6 +66,14 @@ public class ThuChiFragment extends Fragment {
                 }
             }
         }).attach();
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), Them_ThuChi.class);
+                view.getContext().startActivity(intent);
+            }
+        });
 
     }
 }

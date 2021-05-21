@@ -7,8 +7,7 @@ public class ViTien implements Serializable {
     private String name;
     private int money;
 
-    public ViTien() {
-    }
+    public ViTien() {}
 
     public ViTien(String name, int money) {
         this.name = name;

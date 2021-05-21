@@ -1,5 +1,6 @@
 package com.example.moneymanager.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,44 +18,68 @@ import com.example.moneymanager.Model.ViTien;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewVerticalAdapter extends RecyclerView.Adapter<RecyclerViewVerticalAdapter.ViewHolder> {
-    private final List<ViTien> list;
+    private final List<ViTien> listVitien;
+    private Context context;
 
-    public RecyclerViewVerticalAdapter(List<ViTien> list) {
-        this.list = list;
+    public RecyclerViewVerticalAdapter() {
+        this.listVitien = new ArrayList<>();
     }
 
     @NotNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v =LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_list_vi_tien, parent, false);
+        context = parent.getContext();
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_list_vi_tien, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ViTien vi = list.get(position);
+    public void onBindViewHolder(@NonNull RecyclerViewVerticalAdapter.ViewHolder holder, int position) {
+        ViTien vi = listVitien.get(position);
+        holder.title.setText("title" + vi.getName());
+        holder.content.setText("content" + vi.getMoney());
+        holder.setClickListener(new ViewHolder.ClickListener() {
+            @Override
+            public void onClickListener(int position, View v) {
 
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return (listVitien == null) ? 0 : listVitien.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
-        private final ImageView donvi;
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView title;
         private final TextView content;
-
+        private ClickListener clickListener;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            donvi = itemView.findViewById(R.id.ivDonvi);
             title = itemView.findViewById(R.id.tv_vitien_title);
             content = itemView.findViewById(R.id.tv_vitien_content);
+            itemView.setOnClickListener(this);
+        }
+
+
+        public interface ClickListener {
+            void onClickListener(int position, View v);
+        }
+
+        @Override
+        public void onClick(View v) {
+            clickListener.onClickListener(getAdapterPosition(), v);
+        }
+
+        public void setClickListener(ClickListener listener) {
+            this.clickListener = listener;
         }
     }
+
 }

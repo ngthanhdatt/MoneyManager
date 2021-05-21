@@ -37,8 +37,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String create_thu = "CREATE TABLE " + TABLE_THU + "(" +
             COLUMN_THU_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
             COLUMN_THU_SOTIEN + " INTEGER, "+
-            COLUMN_THU_LOAITHUID + " INTEGER "+
-            COLUMN_THU_VITIENID + " INTEGER "+
+            COLUMN_THU_LOAITHUID + " INTEGER, "+
+            COLUMN_THU_VITIENID + " INTEGER, "+
             COLUMN_THU_GHICHU + " TEXT "+")";
 
 
@@ -52,8 +52,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String create_chi = "CREATE TABLE " + TABLE_CHI + "(" +
             COLUMN_CHI_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
             COLUMN_CHI_SOTIEN + " INTEGER, "+
-            COLUMN_CHI_LOAICHIID + " INTEGER "+
-            COLUMN_CHI_VITIENID + " INTEGER "+
+            COLUMN_CHI_LOAICHIID + " INTEGER, "+
+            COLUMN_CHI_VITIENID + " INTEGER, "+
             COLUMN_CHI_GHICHU + " TEXT "+")";
 
 

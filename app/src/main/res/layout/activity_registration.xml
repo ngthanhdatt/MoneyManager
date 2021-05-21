@@ -36,22 +36,6 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/reg_etEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:background="@color/et"
-        app:backgroundTint="@color/et"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:padding="10dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        android:textSize="20dp" />
-
-    <EditText
         android:id="@+id/reg_etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

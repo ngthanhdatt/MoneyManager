@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.moneymanager.Database.UserHelper;
+import com.example.moneymanager.Database.DatabaseHelper;
 import com.example.moneymanager.R;
 import com.example.moneymanager.ResetPassword;
 import com.example.moneymanager.Them_ThuChi;
@@ -62,7 +62,7 @@ public class CaiDatFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        UserHelper db  = new UserHelper(getActivity().getBaseContext());
+        DatabaseHelper db  = new DatabaseHelper(getActivity().getBaseContext());
 
         Toolbar toolbar1 =(Toolbar)view.findViewById(R.id.frag_Toolbar1_caidat);
         Toolbar toolbar2 =(Toolbar)view.findViewById(R.id.frag_Toolbar2_caidat);

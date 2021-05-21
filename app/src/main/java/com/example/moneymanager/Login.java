@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.moneymanager.Database.UserHelper;
+import com.example.moneymanager.Database.DatabaseHelper;
 import com.example.moneymanager.Model.User;
 
 import java.util.ArrayList;
@@ -25,12 +25,10 @@ import java.util.List;
 
 public class Login extends AppCompatActivity {
 
-    private EditText etEmail, etPassword;
+    private EditText etPassword;
     private Button btnLogin;
     private TextView tvSingup, tvForgotPass;
-    List<User> list= new ArrayList<User>();
-    UserHelper db;
-    String id;
+    DatabaseHelper db;
 
 //    private FirebaseAuth mAuth;
 
@@ -39,14 +37,11 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        db = new UserHelper(getBaseContext());
+        db = new DatabaseHelper(getBaseContext());
 
-        etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         tvSingup = (TextView) findViewById(R.id.tvSignup);
-
-        list = db.getAllUser();
 
 
 //        FirebaseAuth firebaseAuthentication = FirebaseAuth.getInstance();
@@ -59,28 +54,18 @@ public class Login extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = etEmail.getText().toString().trim();
                 String pass = etPassword.getText().toString().trim();
-                for(User user:list){
-                    if(user.getEmail()==email && user.getPassword()==pass){
-                        id=String.valueOf(user.getId());
-                    }
-                }
-                if(email.isEmpty()) {
-                    Toast.makeText(Login.this, "Mục email không được bỏ trống", Toast.LENGTH_SHORT).show();
-                    return;
-                }if(pass.isEmpty()){
+                if(pass.isEmpty()){
                     Toast.makeText(Login.this, "Mật khẩu không được bỏ trống", Toast.LENGTH_SHORT).show();
                     return;
                 } else{
-                    Boolean check = db.checkLogin(email, pass);
+                    Boolean check = db.checkLogin(pass);
                     if(check == false){
                         Toast.makeText(Login.this, "Đăng nhập thất bại, hãy thử lại!!!", Toast.LENGTH_SHORT).show();
-//                        Reset();
+//                       Reset();
                     }else {
                         Toast.makeText(Login.this, "Đăng nhập thành công!!!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login.this, com.example.moneymanager.MainActivity.class);
-                        intent.putExtra("userId",id );
                         startActivity(intent);
                         finish();
                     }
@@ -124,7 +109,6 @@ public class Login extends AppCompatActivity {
         });
     }
     protected void Reset(){
-        etEmail.setText("");
         etPassword.setText("");
     }
 }

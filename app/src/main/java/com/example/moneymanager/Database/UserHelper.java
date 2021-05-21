@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import com.example.moneymanager.Model.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class UserHelper extends SQLiteOpenHelper {
 
@@ -19,6 +22,7 @@ public class UserHelper extends SQLiteOpenHelper {
     private static final String COLUMN_NAME ="name";
     private static final String COLUMN_EMAIL ="email";
     private static final String COLUMN_PASSWORD ="password";
+    private static final String TAG = "UserHelper";
 
 
     public UserHelper(Context context){
@@ -59,7 +63,13 @@ public class UserHelper extends SQLiteOpenHelper {
         String selections = COLUMN_EMAIL + " =?";
         String[] values = {email};
         //select id from user where email = "adsadsad"
-        Cursor cursor = db.query(TABLE_NAME, columns, selections, values, null, null, null);
+        Cursor cursor = db.query(TABLE_NAME,
+                columns,
+                selections,
+                values,
+                null,
+                null,
+                null);
         int count = cursor.getCount();
         cursor.close();
         db.close();
@@ -95,5 +105,50 @@ public class UserHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, COLUMN_ID + "=?" ,new String[]{String.valueOf(user.getId())} );
         db.close();
+    }
+
+    public int getIdVi(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        // select * from vitien where id = ?
+        String[] columns = {COLUMN_ID, COLUMN_NAME};
+        String selections = COLUMN_ID + " =?" ;
+        String[] values = {String.valueOf(id)};
+        //select id from user where email = "asdas" and password = "dsdas"
+        Cursor cursor = db.query(TABLE_NAME,
+                columns,
+                selections,
+                values,
+                null,
+                null,
+                null);
+        if(cursor.moveToNext()){
+            Log.d(TAG, "getIdVi: COLUMN_NAME" + cursor.getString(1));
+            return cursor.getInt(0);
+        }else
+            return -1;
+    }
+
+    public List<User> getAllUser() {
+
+        List<User> userList = new ArrayList<User>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_NAME;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                User user = new User();
+                user.setId(Integer.parseInt(cursor.getString(0)));
+                user.setName(cursor.getString(1));
+                user.setEmail(cursor.getString(2));
+                user.setPassword(cursor.getString(3));
+                userList.add(user);
+            } while (cursor.moveToNext());
+        }
+
+        return userList;
     }
 }

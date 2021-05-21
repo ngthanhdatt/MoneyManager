@@ -14,6 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.moneymanager.Database.UserHelper;
+import com.example.moneymanager.Model.User;
+
+import java.util.ArrayList;
+import java.util.List;
 //import com.google.android.gms.tasks.OnCompleteListener;
 //import com.google.android.gms.tasks.Task;
 //import com.google.firebase.auth.AuthResult;
@@ -24,6 +28,10 @@ public class Login extends AppCompatActivity {
     private EditText etEmail, etPassword;
     private Button btnLogin;
     private TextView tvSingup, tvForgotPass;
+    List<User> list= new ArrayList<User>();
+    UserHelper db;
+    String id;
+
 //    private FirebaseAuth mAuth;
 
     @Override
@@ -31,13 +39,15 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        UserHelper db = new UserHelper(getBaseContext());
+        db = new UserHelper(getBaseContext());
 
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         tvSingup = (TextView) findViewById(R.id.tvSignup);
-        tvForgotPass = (TextView) findViewById(R.id.tvForgotPass);
+
+        list = db.getAllUser();
+
 
 //        FirebaseAuth firebaseAuthentication = FirebaseAuth.getInstance();
 //        if(firebaseAuthentication.getCurrentUser() != null){
@@ -51,6 +61,11 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 String email = etEmail.getText().toString().trim();
                 String pass = etPassword.getText().toString().trim();
+                for(User user:list){
+                    if(user.getEmail()==email && user.getPassword()==pass){
+                        id=String.valueOf(user.getId());
+                    }
+                }
                 if(email.isEmpty()) {
                     Toast.makeText(Login.this, "Mục email không được bỏ trống", Toast.LENGTH_SHORT).show();
                     return;
@@ -65,6 +80,7 @@ public class Login extends AppCompatActivity {
                     }else {
                         Toast.makeText(Login.this, "Đăng nhập thành công!!!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login.this, com.example.moneymanager.MainActivity.class);
+                        intent.putExtra("userId",id ); //Optional parameters
                         startActivity(intent);
                         finish();
                     }

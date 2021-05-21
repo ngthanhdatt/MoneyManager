@@ -1,5 +1,6 @@
 package com.example.moneymanager.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,37 +15,24 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.moneymanager.Database.UserHelper;
 import com.example.moneymanager.R;
+import com.example.moneymanager.ResetPassword;
+import com.example.moneymanager.Them_ThuChi;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CaiDatFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class CaiDatFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public CaiDatFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CaiDatFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static CaiDatFragment newInstance(String param1, String param2) {
         CaiDatFragment fragment = new CaiDatFragment();
         Bundle args = new Bundle();
@@ -74,12 +62,15 @@ public class CaiDatFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        UserHelper db  = new UserHelper(getActivity().getBaseContext());
+
         Toolbar toolbar1 =(Toolbar)view.findViewById(R.id.frag_Toolbar1_caidat);
         Toolbar toolbar2 =(Toolbar)view.findViewById(R.id.frag_Toolbar2_caidat);
         Toolbar toolbar3 =(Toolbar)view.findViewById(R.id.frag_Toolbar3_caidat);
         Toolbar toolbar4 =(Toolbar)view.findViewById(R.id.frag_Toolbar4_caidat);
 
         TextView textView = view.findViewById((R.id.frag_Toolbar_caidat_TextView));
+        TextView tvShowUserName = view.findViewById(R.id.tvShowUserName);
 
         Button caidat = view.findViewById((R.id.frag_viewPager_caidat_CaiDat));
         Button vitien = view.findViewById((R.id.frag_viewPager_caidat_ViTien));
@@ -89,6 +80,8 @@ public class CaiDatFragment extends Fragment {
         Button phanhoi = view.findViewById((R.id.frag_viewPager_caidat_PhanHoi));
         Button trogiup = view.findViewById((R.id.frag_viewPager_caidat_TroGiup));
         Button gioithieu = view.findViewById((R.id.frag_viewPager_caidat_GioiThieu));
+
+
 
 
         phongcach.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +97,14 @@ public class CaiDatFragment extends Fragment {
                     i+=1;
                 }
 
+            }
+        });
+
+        matkhau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), ResetPassword.class);
+                view.getContext().startActivity(intent);
             }
         });
     }

@@ -42,9 +42,6 @@ public class Registration extends AppCompatActivity {
         btnSignup = (Button)findViewById(R.id.btnSignup);
         tvLogin = (TextView)findViewById(R.id.tvLogin);
 
-//        User user = new User("son","son", "son123");
-//        db.addUser(user);
-
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,8 +52,6 @@ public class Registration extends AppCompatActivity {
                 String repass = reg_etRepassword.getText().toString().trim();
 
                 User user = new User(name, email, pass);
-//                db.addUser(user);
-
                 if(email.isEmpty()){
                     Toast.makeText(Registration.this, "Mục email không được bỏ trống", Toast.LENGTH_SHORT).show();
                     return;

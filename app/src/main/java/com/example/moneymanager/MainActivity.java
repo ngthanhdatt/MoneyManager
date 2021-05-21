@@ -1,5 +1,6 @@
 package com.example.moneymanager;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,17 +13,22 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.moneymanager.Adapter.FragmentAdapter;
+import com.example.moneymanager.Fragment.ViTien.ViTienFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 
 public class MainActivity extends AppCompatActivity {
+    String id;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent=getIntent();
+        id = intent.getStringExtra("userId");
 
         ViewPager2 viewPager2 = findViewById(R.id.main_viewpager);
         FragmentAdapter fragmentAdapter = new FragmentAdapter(this);
@@ -57,5 +63,10 @@ public class MainActivity extends AppCompatActivity {
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
             }
         });
+
+    }
+
+    public String getId() {
+        return id;
     }
 }

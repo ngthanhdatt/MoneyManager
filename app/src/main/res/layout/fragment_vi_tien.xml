@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:theme="@style/Theme.AppCompat.Light"
     tools:context=".Fragment.ViTien.ViTienFragment">
 
 
@@ -16,20 +15,22 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-<!--        <ImageView-->
-<!--            android:id="@+id/ivBack"-->
-<!--            android:layout_width="60dp"-->
-<!--            android:layout_height="35dp"-->
-<!--            android:src="@drawable/back" />-->
+        <Button
+            android:id="@+id/frag_Toolbar_Vitien_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/back" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/frag_Toolbar_vitien_TextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="Ví tiền"
-            android:textColor="#000000"
-            android:textSize="22sp"
-            android:layout_marginLeft="50dp"/>
+            android:gravity="center_vertical"
+            android:textSize="25sp" ></TextView>
+
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -43,7 +44,7 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btnThemVitien"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"

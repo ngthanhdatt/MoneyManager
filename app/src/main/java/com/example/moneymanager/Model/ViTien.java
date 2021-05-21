@@ -8,6 +8,17 @@ public class ViTien implements Serializable {
     private float cost;
     private User user;
 
+    public ViTien(String name, float cost, User user) {
+        this.name = name;
+        this.cost = cost;
+        this.user = user;
+    }
+
+    public ViTien(String name, float cost) {
+        this.name = name;
+        this.cost = cost;
+    }
+
     public ViTien(int id, String name, float cost, User user) {
         this.id = id;
         this.name = name;

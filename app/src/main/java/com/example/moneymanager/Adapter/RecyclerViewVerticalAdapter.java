@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewVerticalAdapter extends RecyclerView.Adapter<RecyclerViewVerticalAdapter.ViewHolder> {
-    private final List<ViTien> listVitien;
+    private List<ViTien> listVitien;
     private Context context;
 
     public RecyclerViewVerticalAdapter() {
@@ -50,6 +50,12 @@ public class RecyclerViewVerticalAdapter extends RecyclerView.Adapter<RecyclerVi
         });
     }
 
+    // update data
+    public void updateData(List<ViTien> list) {
+        this.listVitien = list;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return (listVitien == null) ? 0 : listVitien.size();
@@ -67,11 +73,6 @@ public class RecyclerViewVerticalAdapter extends RecyclerView.Adapter<RecyclerVi
             itemView.setOnClickListener(this);
         }
 
-
-        public interface ClickListener {
-            void onClickListener(int position, View v);
-        }
-
         @Override
         public void onClick(View v) {
             clickListener.onClickListener(getAdapterPosition(), v);
@@ -79,6 +80,10 @@ public class RecyclerViewVerticalAdapter extends RecyclerView.Adapter<RecyclerVi
 
         public void setClickListener(ClickListener listener) {
             this.clickListener = listener;
+        }
+
+        public interface ClickListener {
+            void onClickListener(int position, View v);
         }
     }
 

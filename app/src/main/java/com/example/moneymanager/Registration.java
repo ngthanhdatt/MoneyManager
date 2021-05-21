@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.moneymanager.Database.UserHelper;
+import com.example.moneymanager.Database.DatabaseHelper;
 import com.example.moneymanager.Model.User;
 //import com.google.android.gms.tasks.OnCompleteListener;
 //import com.google.android.gms.tasks.Task;
@@ -22,7 +22,7 @@ import com.example.moneymanager.Model.User;
 
 public class Registration extends AppCompatActivity {
 
-    private EditText reg_etName, reg_etEmail, reg_etPassword, reg_etRepassword;
+    private EditText reg_etName, reg_etPassword, reg_etRepassword;
     private Button btnSignup;
     private TextView tvLogin;
 //    private FirebaseAuth mAuth;
@@ -32,11 +32,10 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        UserHelper db = new UserHelper(getBaseContext());
+        DatabaseHelper db = new DatabaseHelper(getBaseContext());
 //        mAuth = FirebaseAuth.getInstance();
 
         reg_etName = (EditText)findViewById(R.id.reg_etName);
-        reg_etEmail = (EditText)findViewById(R.id.reg_etEmail);
         reg_etPassword = (EditText)findViewById(R.id.reg_etPassword);
         reg_etRepassword = (EditText) findViewById(R.id.reg_etRePassword);
         btnSignup = (Button)findViewById(R.id.btnSignup);
@@ -47,15 +46,11 @@ public class Registration extends AppCompatActivity {
             public void onClick(View v) {
 
                 String name = reg_etName.getText().toString().trim();
-                String email = reg_etEmail.getText().toString().trim();
                 String pass = reg_etPassword.getText().toString().trim();
                 String repass = reg_etRepassword.getText().toString().trim();
 
-                User user = new User(name, email, pass);
-                if(email.isEmpty()){
-                    Toast.makeText(Registration.this, "Mục email không được bỏ trống", Toast.LENGTH_SHORT).show();
-                    return;
-                }if(pass.isEmpty()){
+                User user = new User(name, pass);
+                if(pass.isEmpty()){
                     Toast.makeText(Registration.this, "Mật khẩu không được bỏ trống", Toast.LENGTH_SHORT).show();
                     return;
                 }if(repass.isEmpty()){

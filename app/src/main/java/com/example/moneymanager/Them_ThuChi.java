@@ -138,7 +138,7 @@ public class Them_ThuChi extends AppCompatActivity {
 
 
         editVitien.setInputType(InputType.TYPE_NULL);
-        //editVitien.setShowSoftInputOnFocus(false);
+        editVitien.setShowSoftInputOnFocus(false);
         editVitien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,7 +173,7 @@ public class Them_ThuChi extends AppCompatActivity {
 
 
         editTheloai.setInputType(InputType.TYPE_NULL);
-        //editTheloai.setShowSoftInputOnFocus(false);
+        editTheloai.setShowSoftInputOnFocus(false);
         editTheloai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

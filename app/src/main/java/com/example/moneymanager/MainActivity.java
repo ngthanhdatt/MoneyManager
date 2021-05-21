@@ -13,7 +13,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.moneymanager.Adapter.FragmentAdapter;
+import com.example.moneymanager.Database.DatabaseHelper;
 import com.example.moneymanager.Fragment.ViTien.ViTienFragment;
+import com.example.moneymanager.Model.ViTien;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -34,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
         FragmentAdapter fragmentAdapter = new FragmentAdapter(this);
         viewPager2.setAdapter(fragmentAdapter);
         viewPager2.setNestedScrollingEnabled(true);
+
+        DatabaseHelper db = new DatabaseHelper(getBaseContext());
+        db.addLoaiChi_Default();
+        db.addLoaiThu_Default();
+        db.addVi_Default();
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_bottom);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

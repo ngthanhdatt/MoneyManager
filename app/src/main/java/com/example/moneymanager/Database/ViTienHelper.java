@@ -45,7 +45,7 @@ public class ViTienHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_NAME, viTien.getName());
-        contentValues.put(COLUMN_COST, viTien.getCost());
+        //contentValues.put(COLUMN_COST, viTien.getCost());
         contentValues.put(ID_USER, idUser);
         db.insert(TABLE_NAME, null, contentValues);
         db.close();

@@ -2,23 +2,17 @@ package com.example.moneymanager.Model;
 
 import java.io.Serializable;
 
-public class ViTien implements Serializable {
+public class LoaiChi implements Serializable {
     private int id;
     private String name;
-    private int money;
 
-    public ViTien() {
-    }
-
-    public ViTien(String name, int money) {
+    public LoaiChi(String name) {
         this.name = name;
-        this.money = money;
     }
 
-    public ViTien(int id, String name, int money) {
+    public LoaiChi(int id, String name) {
         this.id = id;
         this.name = name;
-        this.money = money;
     }
 
     public int getId() {
@@ -35,13 +29,5 @@ public class ViTien implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getMoney() {
-        return money;
-    }
-
-    public void setMoney(int money) {
-        this.money = money;
     }
 }

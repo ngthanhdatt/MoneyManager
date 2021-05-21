@@ -12,8 +12,8 @@
         <activity android:name=".ResetPassword"></activity>
         <activity android:name=".Them_ViTien" />
         <activity android:name=".Them_ThuChi" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Login">
+        <activity android:name=".Login" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

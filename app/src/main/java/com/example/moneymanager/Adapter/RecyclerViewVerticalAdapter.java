@@ -40,8 +40,8 @@ public class RecyclerViewVerticalAdapter extends RecyclerView.Adapter<RecyclerVi
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewVerticalAdapter.ViewHolder holder, int position) {
         ViTien vi = listVitien.get(position);
-        holder.title.setText("title" + vi.getName());
-        holder.content.setText("content" + vi.getMoney());
+        holder.title.setText("Ten vi: " + vi.getName());
+        holder.content.setText("So tien: " + vi.getMoney());
         holder.setClickListener(new ViewHolder.ClickListener() {
             @Override
             public void onClickListener(int position, View v) {

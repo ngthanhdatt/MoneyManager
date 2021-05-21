@@ -15,6 +15,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.moneymanager.Adapter.FragmentAdapter;
 import com.example.moneymanager.Database.DatabaseHelper;
 import com.example.moneymanager.Fragment.ViTien.ViTienFragment;
+import com.example.moneymanager.Model.Chi;
+import com.example.moneymanager.Model.LoaiChi;
 import com.example.moneymanager.Model.ViTien;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -29,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent=getIntent();
-        id = intent.getStringExtra("userId");
+//        Intent intent=getIntent();
+//        id = intent.getStringExtra("userId");
 
         ViewPager2 viewPager2 = findViewById(R.id.main_viewpager);
         FragmentAdapter fragmentAdapter = new FragmentAdapter(this);
@@ -42,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         db.addLoaiThu_Default();
         db.addVi_Default();
 
+        ViTien viTien = new ViTien(4,"tien deo gi", 10000);
+        LoaiChi loaiChi = new LoaiChi(20,"khác");
+        Chi chi = new Chi(10000, "24/12/1999", loaiChi,viTien,"abcs");
+        db.addChi(chi);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_bottom);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

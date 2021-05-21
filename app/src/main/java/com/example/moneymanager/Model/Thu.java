@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Thu implements Serializable {
     private int id;
     private int sotien;
+    private String thoiGian;
     private LoaiThu loaiThu;
     private ViTien viTien;
     private String ghichu;
@@ -17,12 +18,28 @@ public class Thu implements Serializable {
         this.ghichu = ghichu;
     }
 
+    public Thu(int sotien, String thoiGian, LoaiThu loaiThu, ViTien viTien, String ghichu) {
+        this.sotien = sotien;
+        this.thoiGian = thoiGian;
+        this.loaiThu = loaiThu;
+        this.viTien = viTien;
+        this.ghichu = ghichu;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getThoiGian() {
+        return thoiGian;
+    }
+
+    public void setThoiGian(String thoiGian) {
+        this.thoiGian = thoiGian;
     }
 
     public int getSotien() {
@@ -57,11 +74,11 @@ public class Thu implements Serializable {
         this.ghichu = ghichu;
     }
 
-    public int getIDViTien(){
+    public int getIDViTien() {
         return viTien.getId();
     }
 
-    public int getIDLoaiThu(){
+    public int getIDLoaiThu() {
         return loaiThu.getId();
     }
 }

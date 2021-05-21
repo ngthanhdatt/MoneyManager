@@ -25,56 +25,71 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_USER_ID = "id";
     private static final String COLUMN_USER_NAME = "name";
     private static final String COLUMN_USER_PASSWORD = "password";
+
     //table_vitien
     private static final String TABLE_VI = "vi";
     private static final String COLUMN_VI_ID = "vi_id";
     private static final String COLUMN_VI_NAME = "vi_name";
     private static final String COLUMN_VI_MONEY = "vi_money";
+
     //table thu
     private static final String TABLE_THU = "thu";
     private static final String COLUMN_THU_ID = "thu_id";
     private static final String COLUMN_THU_SOTIEN = "thu_money";
-    private static final String COLUMN_THU_LOAITHUID = "thu_loaithu";
+    private static final String COLUMN_THU_THOIGIAN = "thu_thoigian";
+    private static final String COLUMN_THU_LOAITHUID = "thu_loaithuid";
     private static final String COLUMN_THU_VITIENID = "thu_vitienid";
     private static final String COLUMN_THU_GHICHU = "thu_ghichu";
+
     //table chi
     private static final String TABLE_CHI = "chi";
     private static final String COLUMN_CHI_ID = "chi_id";
     private static final String COLUMN_CHI_SOTIEN = "chi_money";
-    private static final String COLUMN_CHI_LOAICHIID = "chi_loaichi";
+    private static final String COLUMN_CHI_THOIGIAN = "chi_thoigian";
+    private static final String COLUMN_CHI_LOAICHIID = "chi_loaichiid";
     private static final String COLUMN_CHI_VITIENID = "chi_vitienid";
     private static final String COLUMN_CHI_GHICHU = "chi_ghichu";
+
     //table loai_thu
     private static final String TABLE_LOAITHU = "loaithu";
     private static final String COLUMN_LOAITHU_ID = "loaithu_id";
     private static final String COLUMN_LOAITHU_NAME = "loaithu_name";
+
     //table loai_chi
     private static final String TABLE_LOAICHI = "loaichi";
     private static final String COLUMN_LOAICHI_ID = "loaichi_id";
     private static final String COLUMN_LOAICHI_NAME = "loaichi_name";
+
     private String create_user = "CREATE TABLE " + TABLE_USER + "(" +
             COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             COLUMN_USER_NAME + " TEXT, " +
             COLUMN_USER_PASSWORD + " TEXT " + ")";
+
     private String create_vi = "CREATE TABLE " + TABLE_VI + "(" +
             COLUMN_VI_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             COLUMN_VI_NAME + " TEXT, " +
-            COLUMN_VI_MONEY + " TEXT " + ")";
+            COLUMN_VI_MONEY + " INTEGER " + ")";
+
     private String create_thu = "CREATE TABLE " + TABLE_THU + "(" +
             COLUMN_THU_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             COLUMN_THU_SOTIEN + " INTEGER, " +
+            COLUMN_THU_THOIGIAN + " TEXT, " +
             COLUMN_THU_LOAITHUID + " INTEGER, " +
             COLUMN_THU_VITIENID + " INTEGER, " +
             COLUMN_THU_GHICHU + " TEXT " + ")";
+
     private String create_chi = "CREATE TABLE " + TABLE_CHI + "(" +
             COLUMN_CHI_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             COLUMN_CHI_SOTIEN + " INTEGER, " +
+            COLUMN_CHI_THOIGIAN + " TEXT, " +
             COLUMN_CHI_LOAICHIID + " INTEGER, " +
             COLUMN_CHI_VITIENID + " INTEGER, " +
             COLUMN_CHI_GHICHU + " TEXT " + ")";
+
     private String create_loaithu = "CREATE TABLE " + TABLE_LOAITHU + "(" +
             COLUMN_LOAITHU_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             COLUMN_LOAITHU_NAME + " TEXT " + ")";
+
     private String create_loaichi = "CREATE TABLE " + TABLE_LOAICHI + "(" +
             COLUMN_LOAICHI_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             COLUMN_LOAICHI_NAME + " TEXT" + ")";
@@ -318,6 +333,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_THU_SOTIEN, thu.getSotien());
+        contentValues.put(COLUMN_THU_THOIGIAN, thu.getThoiGian());
         contentValues.put(COLUMN_THU_LOAITHUID, thu.getIDLoaiThu());
         contentValues.put(COLUMN_THU_VITIENID, thu.getIDViTien());
         contentValues.put(COLUMN_THU_GHICHU, thu.getGhichu());
@@ -336,6 +352,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_THU_SOTIEN, thu.getSotien());
+        values.put(COLUMN_THU_THOIGIAN, thu.getThoiGian());
         values.put(COLUMN_THU_LOAITHUID, thu.getIDLoaiThu());
         values.put(COLUMN_THU_VITIENID, thu.getIDViTien());
         values.put(COLUMN_THU_GHICHU, thu.getGhichu());
@@ -351,8 +368,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_CHI_SOTIEN, chi.getSotien());
-        contentValues.put(COLUMN_CHI_LOAICHIID, chi.getIDLoaiChi());
-        contentValues.put(COLUMN_CHI_VITIENID, chi.getIDViTien());
+        contentValues.put(COLUMN_CHI_THOIGIAN, chi.getThoiGian());
+        contentValues.put(COLUMN_CHI_LOAICHIID, chi.getLoaiChiId());
+        contentValues.put(COLUMN_CHI_VITIENID, chi.getVitienId());
         contentValues.put(COLUMN_CHI_GHICHU, chi.getGhichu());
         db.insert(TABLE_CHI, null, contentValues);
         db.close();
@@ -369,8 +387,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_CHI_SOTIEN, chi.getSotien());
-        values.put(COLUMN_CHI_LOAICHIID, chi.getIDLoaiChi());
-        values.put(COLUMN_CHI_VITIENID, chi.getIDViTien());
+        values.put(COLUMN_CHI_THOIGIAN, chi.getThoiGian());
+        values.put(COLUMN_CHI_LOAICHIID, chi.getLoaiChiId());
+        values.put(COLUMN_CHI_VITIENID, chi.getVitienId());
         values.put(COLUMN_CHI_GHICHU, chi.getGhichu());
 
         // updating row

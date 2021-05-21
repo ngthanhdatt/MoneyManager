@@ -130,7 +130,6 @@ public class ThongKeFragment extends Fragment {
                 }
             }
         }).attach();
-
     }
 
 }

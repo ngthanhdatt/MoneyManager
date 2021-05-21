@@ -5,13 +5,22 @@ import java.io.Serializable;
 public class Chi implements Serializable {
     private int id;
     private int sotien;
+    private String thoiGian;
     private LoaiChi loaiChi;
     private ViTien viTien;
     private String ghichu;
 
-    public Chi(int id, int sotien, LoaiThu loaiThu, ViTien viTien, String ghichu) {
+    public Chi(int id, int sotien, LoaiChi loaiChi, ViTien viTien, String ghichu) {
         this.id = id;
         this.sotien = sotien;
+        this.loaiChi = loaiChi;
+        this.viTien = viTien;
+        this.ghichu = ghichu;
+    }
+
+    public Chi(int sotien, String thoiGian, LoaiChi loaiChi, ViTien viTien, String ghichu) {
+        this.sotien = sotien;
+        this.thoiGian = thoiGian;
         this.loaiChi = loaiChi;
         this.viTien = viTien;
         this.ghichu = ghichu;
@@ -25,16 +34,20 @@ public class Chi implements Serializable {
         this.id = id;
     }
 
+    public String getThoiGian() {
+        return thoiGian;
+    }
+
+    public void setThoiGian(String thoiGian) {
+        this.thoiGian = thoiGian;
+    }
+
     public int getSotien() {
         return sotien;
     }
 
     public void setSotien(int sotien) {
         this.sotien = sotien;
-    }
-
-    public String getGhichu() {
-        return ghichu;
     }
 
     public LoaiChi getLoaiChi() {
@@ -53,15 +66,21 @@ public class Chi implements Serializable {
         this.viTien = viTien;
     }
 
+    public String getGhichu() {
+        return ghichu;
+    }
+
     public void setGhichu(String ghichu) {
         this.ghichu = ghichu;
     }
 
-    public int getIDViTien(){
+    public int getVitienId() {
         return viTien.getId();
     }
 
-    public int getIDLoaiChi(){
+    public int getLoaiChiId() {
         return loaiChi.getId();
     }
+
+
 }

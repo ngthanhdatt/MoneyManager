@@ -9,8 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.moneymanager.Database.ViTienHelper;
-import com.example.moneymanager.Fragment.ViTien.ViTienFragment;
+import com.example.moneymanager.Database.DatabaseHelper;
 import com.example.moneymanager.Model.ViTien;
 
 public class Them_ViTien extends AppCompatActivity {
@@ -23,7 +22,7 @@ public class Them_ViTien extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_vi_tien);
 
-        ViTienHelper db = new ViTienHelper(getBaseContext());
+        DatabaseHelper db = new DatabaseHelper(getBaseContext());
 
         btnback = findViewById(R.id.frag_Toolbar_ThemViTien_back);
         btnback.setText("Thêm Ví Tiền");
@@ -45,17 +44,17 @@ public class Them_ViTien extends AppCompatActivity {
                 }if (sotien.isEmpty()){
                     Toast.makeText(Them_ViTien.this, "Mục số tiền không được bỏ trống", Toast.LENGTH_SHORT).show();
                 }else{
-                    db.addViTien(viTien,id);
+                    db.addViTien(viTien);
                 }
             }
         });
 
+
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Them_ViTien.this,
-                        ViTienFragment.class);
-                startActivity(intent);
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                v.getContext().startActivity(intent);
             }
         });
     }

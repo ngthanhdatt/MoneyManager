@@ -80,7 +80,7 @@ public class Login extends AppCompatActivity {
                     }else {
                         Toast.makeText(Login.this, "Đăng nhập thành công!!!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login.this, com.example.moneymanager.MainActivity.class);
-                        intent.putExtra("userId",id ); //Optional parameters
+                        intent.putExtra("userId",id );
                         startActivity(intent);
                         finish();
                     }

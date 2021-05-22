@@ -280,6 +280,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public List<LoaiThu> getAllLoaiThu() {
+
+        List<LoaiThu> list = new ArrayList<LoaiThu>();
+        String selectQuery = "SELECT  * FROM " + TABLE_LOAITHU;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                LoaiThu loaiThu = new LoaiThu();
+                loaiThu.setId(Integer.parseInt(cursor.getString(0)));
+                loaiThu.setName(cursor.getString(1));
+                list.add(loaiThu);
+            } while (cursor.moveToNext());
+        }
+        return list;
+    }
+
 
     //===============================loai chi==========================//
     public void addLoaiChi(LoaiChi loaiChi) {
@@ -325,6 +342,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             this.addLoaiChi(sukien);
             this.addLoaiChi(khac);
         }
+    }
+
+    public List<LoaiChi> getAllLoaiChi() {
+
+        List<LoaiChi> list = new ArrayList<LoaiChi>();
+        String selectQuery = "SELECT  * FROM " + TABLE_LOAICHI;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                LoaiChi loaiChi = new LoaiChi();
+                loaiChi.setId(Integer.parseInt(cursor.getString(0)));
+                loaiChi.setName(cursor.getString(1));
+                list.add(loaiChi);
+            } while (cursor.moveToNext());
+        }
+        return list;
     }
 
 

@@ -29,8 +29,8 @@ public class Them_ViTien extends AppCompatActivity {
         btnluu = findViewById(R.id.button_themvitien);
         etLoaivi = findViewById(R.id.editText_loaivi);
         etSotien = findViewById(R.id.editText_sotienvi);
-        Intent intent=getIntent();
-        String id = intent.getStringExtra("userId1");
+        //Intent intent=getIntent();
+        //String id = intent.getStringExtra("userId1");
 
         btnluu.setOnClickListener(new View.OnClickListener() {
             @Override

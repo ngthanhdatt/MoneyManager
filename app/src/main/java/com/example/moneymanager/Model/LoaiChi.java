@@ -6,6 +6,9 @@ public class LoaiChi implements Serializable {
     private int id;
     private String name;
 
+    public LoaiChi() {
+    }
+
     public LoaiChi(String name) {
         this.name = name;
     }

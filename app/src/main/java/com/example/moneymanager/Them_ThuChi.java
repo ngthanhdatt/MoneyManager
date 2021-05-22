@@ -9,7 +9,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -17,55 +17,99 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.example.moneymanager.Fragment.ThuChi.BottomSheetDialog_LoaiChi;
-import com.example.moneymanager.Fragment.ThuChi.BottomSheetDialog_LoaiThu;
-import com.example.moneymanager.Fragment.ThuChi.BottomSheetDialog_ViTien;
+import com.example.moneymanager.Adapter.BottomSheetDialog.InterfaceLoaiChi;
+import com.example.moneymanager.Adapter.BottomSheetDialog.InterfaceLoaiThu;
+import com.example.moneymanager.Adapter.BottomSheetDialog.InterfaceViTien;
+import com.example.moneymanager.Database.DatabaseHelper;
+import com.example.moneymanager.Fragment.ThuChi.BottomSheetDialog.BottomSheetDialog_LoaiChi;
+import com.example.moneymanager.Fragment.ThuChi.BottomSheetDialog.BottomSheetDialog_LoaiThu;
+import com.example.moneymanager.Fragment.ThuChi.BottomSheetDialog.BottomSheetDialog_ViTien;
+import com.example.moneymanager.Model.Chi;
+import com.example.moneymanager.Model.LoaiChi;
+import com.example.moneymanager.Model.LoaiThu;
+import com.example.moneymanager.Model.Thu;
+import com.example.moneymanager.Model.ViTien;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
-public class Them_ThuChi extends AppCompatActivity {
+public class Them_ThuChi extends AppCompatActivity{
+    DatabaseHelper db= new DatabaseHelper(getBaseContext());
 
+    Toolbar toolbar1;
+    Toolbar toolbar2;
+    Toolbar toolbar3;
+    Toolbar toolbar4;
+    Toolbar toolbar5;
+    Toolbar toolbar6;
+
+    Button back;
+    Button luu ;
+    Button tieptuc ;
+    Button editNgay ;
+    Button editGio ;
+
+    TextView ngay ;
+    TextView vitien ;
+    TextView theloai ;
+    TextView sotien;
+    TextView ghichu;
+
+
+    EditText editVitien ;
+    EditText editTheloai ;
+    EditText editSotien ;
+    EditText editGhichu ;
+
+    TabLayout tabLayout ;
+    TabItem tabThu;
+    TabItem tabChi;
+
+    ViTien vi;
+    LoaiChi lchi;
+    LoaiThu lthu;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_thu_chi);
 
-        Toolbar toolbar1 = findViewById(R.id.frag_Toolbar_ThemThuChi);
-        Toolbar toolbar2 = findViewById(R.id.frag_Toolbar_ThemThuChi_ngay);
-        Toolbar toolbar3 = findViewById(R.id.frag_Toolbar_ThemThuChi_ViTien);
-        Toolbar toolbar4 = findViewById(R.id.frag_Toolbar_ThemThuChi_TheLoai);
-        Toolbar toolbar5 = findViewById(R.id.frag_Toolbar_ThemThuChi_SoTien);
-        Toolbar toolbar6 = findViewById(R.id.frag_Toolbar_ThemThuChi_GhiChu);
+        toolbar1 = findViewById(R.id.frag_Toolbar_ThemThuChi);
+        toolbar2 = findViewById(R.id.frag_Toolbar_ThemThuChi_ngay);
+        toolbar3 = findViewById(R.id.frag_Toolbar_ThemThuChi_ViTien);
+        toolbar4 = findViewById(R.id.frag_Toolbar_ThemThuChi_TheLoai);
+        toolbar5 = findViewById(R.id.frag_Toolbar_ThemThuChi_SoTien);
+        toolbar6 = findViewById(R.id.frag_Toolbar_ThemThuChi_GhiChu);
 
-        Button back = findViewById(R.id.frag_Toolbar_ThemThuChi_back);
+        back = findViewById(R.id.frag_Toolbar_ThemThuChi_back);
         back.setText("Thu");
-        Button luu = findViewById(R.id.button_themthuchi);
-        Button tieptuc = findViewById(R.id.button_tieptuc);
-        Button editNgay = findViewById(R.id.edit_Ngay);
-        Button editGio = findViewById(R.id.edit_Gio);
+        luu = findViewById(R.id.button_themthuchi);
+        tieptuc = findViewById(R.id.button_tieptuc);
+        editNgay = findViewById(R.id.edit_Ngay);
+        editGio = findViewById(R.id.edit_Gio);
 
-        TextView ngay = findViewById(R.id.TextView_ngay);
-        TextView vitien = findViewById(R.id.TextView_vitien);
-        TextView theloai = findViewById(R.id.TextView_theloai);
-        TextView sotien = findViewById(R.id.TextView_sotien);
-        TextView ghichu = findViewById(R.id.TextView_ghichu);
+        ngay = findViewById(R.id.TextView_ngay);
+        vitien = findViewById(R.id.TextView_vitien);
+        theloai = findViewById(R.id.TextView_theloai);
+        sotien = findViewById(R.id.TextView_sotien);
+        ghichu = findViewById(R.id.TextView_ghichu);
 
 
-        EditText editVitien = findViewById(R.id.editText_vitien);
-        EditText editTheloai = findViewById(R.id.editText_theloai);
-        EditText editSotien = findViewById(R.id.editText_sotien);
-        EditText editGhichu = findViewById(R.id.editText_ghichu);
+        editVitien = findViewById(R.id.editText_vitien);
+        editTheloai = findViewById(R.id.editText_theloai);
+        editSotien = findViewById(R.id.editText_sotien);
+        editGhichu = findViewById(R.id.editText_ghichu);
 
-        TabLayout tabLayout = findViewById(R.id.frag_tabLayout_ThemThuChi);
-        TabItem tabThu= findViewById(R.id.tabThu);
-        TabItem tabChi= findViewById(R.id.tabChi);
+        tabLayout = findViewById(R.id.frag_tabLayout_ThemThuChi);
+        tabThu = findViewById(R.id.tabThu);
+        tabChi = findViewById(R.id.tabChi);
 
 
         String currentDate = new SimpleDateFormat("dd/MM/yyyy(EEE)", Locale.getDefault()).format(new Date());
@@ -137,14 +181,16 @@ public class Them_ThuChi extends AppCompatActivity {
         });
 
 
-        editVitien.setInputType(InputType.TYPE_NULL);
+        //editVitien.setInputType(InputType.TYPE_NULL);
         editVitien.setShowSoftInputOnFocus(false);
-        editVitien.setOnClickListener(new View.OnClickListener() {
+        editVitien.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                BottomSheetDialog_ViTien bottomSheet = new BottomSheetDialog_ViTien();
-                bottomSheet.show(getSupportFragmentManager(),
-                        "ModalBottomSheet");
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    openBottomViTien();
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -152,10 +198,10 @@ public class Them_ThuChi extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                if(tab.getPosition()==0) {
+                if (tab.getPosition() == 0) {
                     back.setText("Thu");
                 }
-                if(tab.getPosition()==1) {
+                if (tab.getPosition() == 1) {
                     back.setText("Chi");
                 }
             }
@@ -172,22 +218,115 @@ public class Them_ThuChi extends AppCompatActivity {
         });
 
 
-        editTheloai.setInputType(InputType.TYPE_NULL);
+        //editTheloai.setInputType(InputType.TYPE_NULL);
         editTheloai.setShowSoftInputOnFocus(false);
-        editTheloai.setOnClickListener(new View.OnClickListener() {
+        editTheloai.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (back.getText() == "Thu") {
+                        openBottomLoaiThu();
+                    }
+                    if (back.getText() == "Chi") {
+                        openBottomLoaiChi();
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        luu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(back.getText()=="Thu") {
-                    BottomSheetDialog_LoaiThu bottomSheet = new BottomSheetDialog_LoaiThu();
-                    bottomSheet.show(getSupportFragmentManager(),
-                            "ModalBottomSheet");
+                DatabaseHelper db= new DatabaseHelper(getBaseContext());
+
+                List<ViTien> listVi= new ArrayList<>();
+                List<LoaiThu> listLoaiThu= new ArrayList<>();
+                List<LoaiChi> listLoaiChi= new ArrayList<>();
+
+                listVi= db.getAllViTien();
+                listLoaiChi=db.getAllLoaiChi();
+                listLoaiThu=db.getAllLoaiThu();
+
+                String time = editNgay.getText().toString() +" "+ editGio.getText().toString();
+                for(ViTien viTien:listVi){
+                    if(editVitien.getText().toString()==viTien.getName()){
+                        vi=viTien;
+                    }
                 }
-                if(back.getText()=="Chi") {
-                    BottomSheetDialog_LoaiChi bottomSheet = new BottomSheetDialog_LoaiChi();
-                    bottomSheet.show(getSupportFragmentManager(),
-                            "ModalBottomSheet");
+
+                if(back.getText()=="Thu"){
+                    for(LoaiThu loaiThu:listLoaiThu){
+                        if(editTheloai.getText().toString()==loaiThu.getName()){
+                            lthu=loaiThu;
+                        }
+                    }
+                }
+
+                if(back.getText()=="Chi"){
+                    for(LoaiChi loaiChi:listLoaiChi){
+                        if(editTheloai.getText().toString()==loaiChi.getName()){
+                            lchi=loaiChi;
+                        }
+                    }
+                }
+
+                int tien = Integer.parseInt(editSotien.getText().toString());
+                String ghichu = editGhichu.getText().toString();
+
+                if(back.getText()=="Thu"){
+                    Thu thu = new Thu(tien, time,lthu,vi,ghichu);
+                    db.addThu(thu);
+                }
+
+                if(back.getText()=="Chi"){
+                    Chi chi = new Chi(tien, time,lchi,vi,ghichu);
+                    db.addChi(chi);
                 }
             }
         });
+
+
+    }
+
+    private void openBottomLoaiThu(){
+        DatabaseHelper db= new DatabaseHelper(this);
+        List<LoaiThu> list= new ArrayList<>();
+        list =db.getAllLoaiThu();
+        BottomSheetDialog_LoaiThu bottomSheetDialog_loaiThu= new BottomSheetDialog_LoaiThu(list, new InterfaceLoaiThu() {
+            @Override
+            public void clickItem(LoaiThu loaiThu) {
+                editTheloai.setText(loaiThu.getName());
+            }
+        });
+        bottomSheetDialog_loaiThu.show(getSupportFragmentManager(),bottomSheetDialog_loaiThu.getTag());
+    }
+
+    private void openBottomLoaiChi(){
+        DatabaseHelper db= new DatabaseHelper(this);
+        List<LoaiChi> list= new ArrayList<>();
+        list =db.getAllLoaiChi();
+        BottomSheetDialog_LoaiChi bottomSheetDialog_loaiChi= new BottomSheetDialog_LoaiChi(list, new InterfaceLoaiChi() {
+            @Override
+            public void clickItem(LoaiChi loaiChi) {
+                editTheloai.setText(loaiChi.getName());
+            }
+        });
+        bottomSheetDialog_loaiChi.show(getSupportFragmentManager(),bottomSheetDialog_loaiChi.getTag());
+    }
+
+    private void openBottomViTien(){
+        DatabaseHelper db= new DatabaseHelper(this);
+        List<ViTien> list= new ArrayList<>();
+        list =db.getAllViTien();
+        BottomSheetDialog_ViTien bottomSheetDialog_viTien= new BottomSheetDialog_ViTien(list, new InterfaceViTien() {
+            @Override
+            public void clickItem(ViTien viTien) {
+                editVitien.setText(viTien.getName());
+            }
+        });
+        bottomSheetDialog_viTien.show(getSupportFragmentManager(),bottomSheetDialog_viTien.getTag());
     }
 }

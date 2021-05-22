@@ -1,32 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
-    android:gravity="center_horizontal"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:stretchColumns="0,1,2"
-
-    android:padding="16dp">
-
-    <TableRow>
-        <Button
-            android:text="Tiền lương"
-            android:id="@+id/loaithu_luong"/>
-        <Button
-            android:text="Tiền thưởng"
-            android:id="@+id/loaithu_thuong"/>
-        <Button
-            android:text="Trả thêm giờ"
-            android:id="@+id/loaithu_themgio"/>
-    </TableRow>
-
-    <TableRow>
-        <Button
-            android:text="Khác"
-            android:id="@+id/loaithu_khac"/>
-    </TableRow>
+    tools:context=".Fragment.ThuChi.BottomSheetDialog.BottomSheetDialog_LoaiThu">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/frag_recyclerView_dialog_loaithu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-</TableLayout>
+
+</LinearLayout>

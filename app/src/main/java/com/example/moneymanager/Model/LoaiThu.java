@@ -6,6 +6,9 @@ public class LoaiThu implements Serializable {
     private int id;
     private String name;
 
+    public LoaiThu() {
+    }
+
     public LoaiThu(String name) {
         this.name = name;
     }

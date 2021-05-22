@@ -1,5 +1,6 @@
 package com.example.moneymanager;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -72,9 +73,6 @@ public class Them_ThuChi extends AppCompatActivity{
     TabItem tabThu;
     TabItem tabChi;
 
-    ViTien vi;
-    LoaiChi lchi;
-    LoaiThu lthu;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -240,53 +238,34 @@ public class Them_ThuChi extends AppCompatActivity{
         luu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseHelper db= new DatabaseHelper(getBaseContext());
+                DatabaseHelper db = new DatabaseHelper(getBaseContext());
 
-                List<ViTien> listVi= new ArrayList<>();
-                List<LoaiThu> listLoaiThu= new ArrayList<>();
-                List<LoaiChi> listLoaiChi= new ArrayList<>();
-
-                listVi= db.getAllViTien();
-                listLoaiChi=db.getAllLoaiChi();
-                listLoaiThu=db.getAllLoaiThu();
-
-                String time = editNgay.getText().toString() +" "+ editGio.getText().toString();
-                for(ViTien viTien:listVi){
-                    if(editVitien.getText().toString()==viTien.getName()){
-                        vi=viTien;
-                    }
-                }
+                String time = editNgay.getText().toString()+" "+editGio.getText().toString();
+                String ghichu= editGhichu.getText().toString();
+                Integer tien= Integer.parseInt(editSotien.getText().toString());
+                String vi=editVitien.getText().toString();
+                String loai=editTheloai.getText().toString();
+                ViTien viTien=db.getViTien(vi);
 
                 if(back.getText()=="Thu"){
-                    for(LoaiThu loaiThu:listLoaiThu){
-                        if(editTheloai.getText().toString()==loaiThu.getName()){
-                            lthu=loaiThu;
-                        }
-                    }
-                }
-
-                if(back.getText()=="Chi"){
-                    for(LoaiChi loaiChi:listLoaiChi){
-                        if(editTheloai.getText().toString()==loaiChi.getName()){
-                            lchi=loaiChi;
-                        }
-                    }
-                }
-
-                int tien = Integer.parseInt(editSotien.getText().toString());
-                String ghichu = editGhichu.getText().toString();
-
-                if(back.getText()=="Thu"){
-                    Thu thu = new Thu(tien, time,lthu,vi,ghichu);
+                    LoaiThu loaiThu=db.getLoaiThu(loai);
+                    Thu thu = new Thu(tien,time,loaiThu,viTien,ghichu);
                     db.addThu(thu);
                 }
 
                 if(back.getText()=="Chi"){
-                    Chi chi = new Chi(tien, time,lchi,vi,ghichu);
+                    LoaiChi loaiChi=db.getLoaiChi(loai);
+                    Chi chi = new Chi(tien,time,loaiChi,viTien,ghichu);
                     db.addChi(chi);
                 }
+
+                editTheloai.setText("");
+                editGhichu.setText("");
+                editVitien.setText("");
+                editGhichu.setText("");
             }
         });
+
 
 
     }
@@ -329,4 +308,6 @@ public class Them_ThuChi extends AppCompatActivity{
         });
         bottomSheetDialog_viTien.show(getSupportFragmentManager(),bottomSheetDialog_viTien.getTag());
     }
+
+
 }

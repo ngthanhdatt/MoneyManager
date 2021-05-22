@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyManager">
-        <activity android:name=".ResetPassword"></activity>
+        <activity android:name=".Fragment.ViTien.Edit_ViTien"></activity>
+        <activity android:name=".ResetPassword" />
         <activity android:name=".Them_ViTien" />
         <activity android:name=".Them_ThuChi" />
         <activity android:name=".Login" />

@@ -1,11 +1,17 @@
 package com.example.moneymanager.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -13,6 +19,8 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.moneymanager.Fragment.ViTien.Edit_ViTien;
+import com.example.moneymanager.Fragment.ViTien.ViTienFragment;
 import com.example.moneymanager.R;
 import com.example.moneymanager.Model.ViTien;
 
@@ -24,6 +32,8 @@ import java.util.List;
 public class RecyclerViewVerticalAdapter extends RecyclerView.Adapter<RecyclerViewVerticalAdapter.ViewHolder> {
     private List<ViTien> listVitien;
     private Context context;
+    private static final int MENU_ITEM_EDIT = 222;
+    private static final int MENU_ITEM_DELETE = 444;
 
     public RecyclerViewVerticalAdapter() {
         this.listVitien = new ArrayList<>();
@@ -42,10 +52,16 @@ public class RecyclerViewVerticalAdapter extends RecyclerView.Adapter<RecyclerVi
         ViTien vi = listVitien.get(position);
         holder.title.setText("Ten vi: " + vi.getName());
         holder.content.setText("So tien: " + vi.getMoney());
+
         holder.setClickListener(new ViewHolder.ClickListener() {
             @Override
             public void onClickListener(int position, View v) {
-
+                Intent intent = new Intent(context, Edit_ViTien.class);
+//                intent.putExtra("title", vi.getName());
+//                String tien = String.valueOf(vi.getMoney());
+//                intent.putExtra("content", tien);
+                intent.putExtra("vi", vi);
+                context.startActivity(intent);
             }
         });
     }

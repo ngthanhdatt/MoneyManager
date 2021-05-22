@@ -8,6 +8,7 @@
     android:layout_margin="5dp">
 
     <LinearLayout
+        android:id="@+id/linearLayout_listVi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -30,12 +31,5 @@
             android:textSize="20sp"
             tools:text="Content" />
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@android:drawable/ic_menu_info_details"
-        android:layout_gravity="center"/>
-
 
 </LinearLayout>

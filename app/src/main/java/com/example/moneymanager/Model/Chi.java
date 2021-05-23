@@ -10,6 +10,9 @@ public class Chi implements Serializable {
     private ViTien viTien;
     private String ghichu;
 
+    public Chi() {
+    }
+
     public Chi(int id, int sotien, LoaiChi loaiChi, ViTien viTien, String ghichu) {
         this.id = id;
         this.sotien = sotien;

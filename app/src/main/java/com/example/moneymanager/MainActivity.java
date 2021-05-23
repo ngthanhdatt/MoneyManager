@@ -44,11 +44,6 @@ public class MainActivity extends AppCompatActivity {
         db.addLoaiThu_Default();
         db.addVi_Default();
 
-        ViTien viTien = new ViTien(4,"tien deo gi", 10000);
-        LoaiChi loaiChi = new LoaiChi(20,"khác");
-        Chi chi = new Chi(10000, "24/12/1999", loaiChi,viTien,"abcs");
-        db.addChi(chi);
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_bottom);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

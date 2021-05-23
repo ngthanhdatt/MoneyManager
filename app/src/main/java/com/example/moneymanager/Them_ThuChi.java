@@ -79,6 +79,9 @@ public class Them_ThuChi extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_thu_chi);
 
+        DatabaseHelper db = new DatabaseHelper(this);
+
+
         toolbar1 = findViewById(R.id.frag_Toolbar_ThemThuChi);
         toolbar2 = findViewById(R.id.frag_Toolbar_ThemThuChi_ngay);
         toolbar3 = findViewById(R.id.frag_Toolbar_ThemThuChi_ViTien);
@@ -238,35 +241,34 @@ public class Them_ThuChi extends AppCompatActivity{
         luu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseHelper db = new DatabaseHelper(getBaseContext());
 
                 String time = editNgay.getText().toString()+" "+editGio.getText().toString();
                 String ghichu= editGhichu.getText().toString();
                 Integer tien= Integer.parseInt(editSotien.getText().toString());
                 String vi=editVitien.getText().toString();
                 String loai=editTheloai.getText().toString();
-                ViTien viTien=db.getViTien(vi);
+                ViTien viTien=db.getViTienByName(vi);
 
-                if(back.getText()=="Thu"){
-                    LoaiThu loaiThu=db.getLoaiThu(loai);
-                    Thu thu = new Thu(tien,time,loaiThu,viTien,ghichu);
-                    db.addThu(thu);
-                }
+                    if (back.getText() == "Thu") {
+                        LoaiThu loaiThu = db.getLoaiThuByName(loai);
+                        Thu thu = new Thu(tien, time, loaiThu, viTien, ghichu);
+                        db.addThu(thu, viTien);
+                    }
 
-                if(back.getText()=="Chi"){
-                    LoaiChi loaiChi=db.getLoaiChi(loai);
-                    Chi chi = new Chi(tien,time,loaiChi,viTien,ghichu);
-                    db.addChi(chi);
-                }
+                    if (back.getText() == "Chi") {
+                        LoaiChi loaiChi = db.getLoaiChiByName(loai);
+                        Chi chi = new Chi(tien, time, loaiChi, viTien, ghichu);
+                        db.addChi(chi, viTien);
+                    }
+
+
 
                 editTheloai.setText("");
                 editGhichu.setText("");
                 editVitien.setText("");
-                editGhichu.setText("");
+                editSotien.setText("");
             }
         });
-
-
 
     }
 

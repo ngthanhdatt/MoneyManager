@@ -10,6 +10,9 @@ public class Thu implements Serializable {
     private ViTien viTien;
     private String ghichu;
 
+    public Thu() {
+    }
+
     public Thu(int id, int sotien, LoaiThu loaiThu, ViTien viTien, String ghichu) {
         this.id = id;
         this.sotien = sotien;

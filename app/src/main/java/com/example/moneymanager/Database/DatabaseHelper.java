@@ -204,8 +204,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_VI_MONEY, viTien.getMoney());
 
         // updating row
-        return db.update(TABLE_VI, values, COLUMN_VI_ID + " = ?",
-                new String[]{String.valueOf(viTien.getId())});
+        return db.update(TABLE_VI, values, COLUMN_VI_NAME + " = ?",
+                new String[]{viTien.getName()});
     }
 
     public List<ViTien> getAllViTien() {
@@ -247,26 +247,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public ViTien getViTien(String name){
-        List<ViTien> list = new ArrayList<ViTien>();
-        String selectQuery = "SELECT  * FROM " + TABLE_VI;
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        if (cursor.moveToFirst()) {
-            do {
-                ViTien viTien = new ViTien();
-                viTien.setId(Integer.parseInt(cursor.getString(0)));
-                viTien.setName(cursor.getString(1));
-                viTien.setMoney(Integer.parseInt(cursor.getString(2)));
-                list.add(viTien);
-            } while (cursor.moveToNext());
-        }
-        for(ViTien viTien:list){
-            if(viTien.getName()==name){
-                return viTien;
-            }
-        }
-        return null;
+    public ViTien getViTienByName(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_VI, new String[] { COLUMN_VI_ID,
+                        COLUMN_VI_NAME, COLUMN_VI_MONEY }, COLUMN_VI_NAME + "=?",
+                new String[] { name }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        ViTien viTien = new ViTien(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1), Integer.parseInt(cursor.getString(2)));
+        return viTien;
+    }
+
+    public ViTien getViTienById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_VI, new String[] { COLUMN_VI_ID,
+                        COLUMN_VI_NAME, COLUMN_VI_MONEY }, COLUMN_VI_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        ViTien viTien = new ViTien(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1), Integer.parseInt(cursor.getString(2)));
+        return viTien;
     }
 
 
@@ -319,26 +325,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
-    public LoaiThu getLoaiThu(String name){
-        List<LoaiThu> list = new ArrayList<LoaiThu>();
-        String selectQuery = "SELECT  * FROM " + TABLE_LOAITHU;
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        if (cursor.moveToFirst()) {
-            do {
-                LoaiThu loaiThu = new LoaiThu();
-                loaiThu.setId(Integer.parseInt(cursor.getString(0)));
-                loaiThu.setName(cursor.getString(1));
-                list.add(loaiThu);
-            } while (cursor.moveToNext());
-        }
-        for(LoaiThu loaiThu:list){
-            if(loaiThu.getName()==name){
-                return loaiThu;
-            }
-        }
-        return null;
+    public LoaiThu getLoaiThuByName(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_LOAITHU, new String[] { COLUMN_LOAITHU_ID,
+                        COLUMN_LOAITHU_NAME}, COLUMN_LOAITHU_NAME + "=?",
+                new String[] { name }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        LoaiThu loaiThu = new LoaiThu(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1));
+        return loaiThu;
     }
+
+    public LoaiThu getLoaiThuById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_LOAITHU, new String[] { COLUMN_LOAITHU_ID,
+                        COLUMN_LOAITHU_NAME}, COLUMN_LOAITHU_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        LoaiThu loaiThu = new LoaiThu(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1));
+        return loaiThu;
+    }
+
+
 
 
     //===============================loai chi==========================//
@@ -403,38 +418,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return list;
     }
-    public LoaiChi getLoaiChi(String name){
-        List<LoaiChi> list = new ArrayList<LoaiChi>();
-        String selectQuery = "SELECT  * FROM " + TABLE_LOAICHI;
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        if (cursor.moveToFirst()) {
-            do {
-                LoaiChi LoaiChi = new LoaiChi();
-                LoaiChi.setId(Integer.parseInt(cursor.getString(0)));
-                LoaiChi.setName(cursor.getString(1));
-                list.add(LoaiChi);
-            } while (cursor.moveToNext());
-        }
-        for(LoaiChi loaiChi:list){
-            if(loaiChi.getName()==name){
-                return loaiChi;
-            }
-        }
-        return null;
+
+    public LoaiChi getLoaiChiByName(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_LOAICHI, new String[] { COLUMN_LOAICHI_ID,
+                        COLUMN_LOAICHI_NAME}, COLUMN_LOAICHI_NAME + "=?",
+                new String[] { name }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        LoaiChi loaiChi = new LoaiChi(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1));
+        return loaiChi;
+    }
+
+    public LoaiChi getLoaiChiById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_LOAICHI, new String[] { COLUMN_LOAICHI_ID,
+                        COLUMN_LOAICHI_NAME}, COLUMN_LOAICHI_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        LoaiChi loaiChi = new LoaiChi(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1));
+        return loaiChi;
     }
 
 
     //====================================thu==============================//
-    public void addThu(Thu thu) {
+    public void addThu(Thu thu,ViTien viTien) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_THU_SOTIEN, thu.getSotien());
         contentValues.put(COLUMN_THU_THOIGIAN, thu.getThoiGian());
         contentValues.put(COLUMN_THU_LOAITHUID, thu.getIDLoaiThu());
-        contentValues.put(COLUMN_THU_VITIENID, thu.getIDViTien());
+        contentValues.put(COLUMN_THU_VITIENID, thu.getViTien().getId());
         contentValues.put(COLUMN_THU_GHICHU, thu.getGhichu());
         db.insert(TABLE_THU, null, contentValues);
+        viTien= new ViTien(viTien.getName(),viTien.getMoney()+thu.getSotien());
+        updateViTien(viTien);
         db.close();
     }
 
@@ -453,16 +478,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_THU_LOAITHUID, thu.getIDLoaiThu());
         values.put(COLUMN_THU_VITIENID, thu.getIDViTien());
         values.put(COLUMN_THU_GHICHU, thu.getGhichu());
-
         // updating row
         return db.update(TABLE_THU, values, COLUMN_THU_ID + " = ?",
                 new String[]{String.valueOf(thu.getId())});
     }
 
+    public List<Thu> getAllThu() {
+
+        List<Thu> list = new ArrayList<Thu>();
+        String selectQuery = "SELECT  * FROM " + TABLE_THU;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Thu thu = new Thu();
+                thu.setId(Integer.parseInt(cursor.getString(0)));
+                thu.setSotien(Integer.parseInt(cursor.getString(1)));
+                thu.setThoiGian(cursor.getString(2));
+                thu.setLoaiThu(getLoaiThuById(Integer.parseInt(cursor.getString(3))));
+                thu.setViTien(getViTienById(Integer.parseInt(cursor.getString(4))));
+                thu.setGhichu(cursor.getString(5));
+                list.add(thu);
+            } while (cursor.moveToNext());
+        }
+        return list;
+    }
+
 
 
     //====================================chi==============================//
-    public void addChi(Chi chi) {
+    public void addChi(Chi chi,ViTien viTien) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_CHI_SOTIEN, chi.getSotien());
@@ -471,6 +516,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_CHI_VITIENID, chi.getVitienId());
         contentValues.put(COLUMN_CHI_GHICHU, chi.getGhichu());
         db.insert(TABLE_CHI, null, contentValues);
+        viTien= new ViTien(viTien.getName(),viTien.getMoney()-chi.getSotien());
+        updateViTien(viTien);
         db.close();
     }
 
@@ -495,5 +542,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(chi.getId())});
     }
 
+
+    public List<Chi> getAllChi() {
+
+        List<Chi> list = new ArrayList<Chi>();
+        String selectQuery = "SELECT  * FROM " + TABLE_CHI;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Chi chi = new Chi();
+                chi.setId(Integer.parseInt(cursor.getString(0)));
+                chi.setSotien(Integer.parseInt(cursor.getString(1)));
+                chi.setThoiGian(cursor.getString(2));
+                chi.setLoaiChi(getLoaiChiById(Integer.parseInt(cursor.getString(3))));
+                chi.setViTien(getViTienById(Integer.parseInt(cursor.getString(4))));
+                chi.setGhichu(cursor.getString(5));
+                list.add(chi);
+            } while (cursor.moveToNext());
+        }
+        return list;
+    }
 
 }

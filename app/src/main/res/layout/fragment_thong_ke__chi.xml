@@ -17,7 +17,7 @@
         android:layout_height="220dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:elevation="10dp"
         app:cardCornerRadius="10dp">
 
@@ -337,7 +337,7 @@
                 android:background="@color/white"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="5dp"/>
+/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -345,7 +345,7 @@
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="5dp">
 
                 <!--Text view to display R -->
                 <TextView
@@ -353,7 +353,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Ăn uống"
-                    android:textSize="18sp"/>
+                    android:textSize="14sp"/>
 
                 <!--Text view to display the -->
                 <!-- percentage of programming language -->
@@ -364,7 +364,7 @@
                     android:text="0"
                     android:id="@+id/tvAnUong"
                     android:textAlignment="textEnd"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-light"
@@ -385,14 +385,14 @@
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Giải trí"
-                    android:textSize="18sp"/>
+                    android:textSize="14sp"/>
 
                 <!--Text view to display the percentage -->
                 <!-- of programming language used. -->
@@ -404,7 +404,7 @@
                     android:text="0"
                     android:id="@+id/tvGiaiTri"
                     android:textAlignment="textEnd"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-light"
@@ -425,14 +425,14 @@
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Giao thông"
-                    android:textSize="18sp"/>
+                    android:textSize="14sp"/>
 
                 <!--Text view to display the percentage -->
                 <!-- of programming language used. -->
@@ -443,7 +443,7 @@
                     android:text="0"
                     android:id="@+id/tvGiaoThong"
                     android:textAlignment="textEnd"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-light"
@@ -464,14 +464,14 @@
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Sở thích"
-                    android:textSize="18sp"/>
+                    android:textSize="14sp"/>
 
                 <!--Text view to display the percentage -->
                 <!-- of programming language used.-->
@@ -482,7 +482,7 @@
                     android:text="0"
                     android:id="@+id/tvSoThich"
                     android:textAlignment="textEnd"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-light"
@@ -504,7 +504,7 @@
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="5dp">
 
                 <!--Text view to display R -->
                 <TextView
@@ -512,7 +512,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Sinh hoạt"
-                    android:textSize="18sp"/>
+                    android:textSize="14sp"/>
 
                 <!--Text view to display the -->
                 <!-- percentage of programming language -->
@@ -523,7 +523,7 @@
                     android:text="0"
                     android:id="@+id/tvSinhHoat"
                     android:textAlignment="textEnd"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-light"
@@ -544,7 +544,7 @@
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="5dp">
 
                 <!--Text view to display R -->
                 <TextView
@@ -552,7 +552,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Áo quàn"
-                    android:textSize="18sp"/>
+                    android:textSize="14sp"/>
 
                 <!--Text view to display the -->
                 <!-- percentage of programming language -->
@@ -563,7 +563,7 @@
                     android:text="0"
                     android:id="@+id/tvAoQuan"
                     android:textAlignment="textEnd"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-light"
@@ -584,7 +584,7 @@
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="5dp">
 
                 <!--Text view to display R -->
                 <TextView
@@ -592,7 +592,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Làm đẹp"
-                    android:textSize="18sp"/>
+                    android:textSize="14sp"/>
 
                 <!--Text view to display the -->
                 <!-- percentage of programming language -->
@@ -603,7 +603,7 @@
                     android:text="0"
                     android:id="@+id/tvLamDep"
                     android:textAlignment="textEnd"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-light"
@@ -624,7 +624,7 @@
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="5dp">
 
                 <!--Text view to display R -->
                 <TextView
@@ -632,7 +632,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Sức khỏe"
-                    android:textSize="18sp"/>
+                    android:textSize="14sp"/>
 
                 <!--Text view to display the -->
                 <!-- percentage of programming language -->
@@ -643,7 +643,7 @@
                     android:text="0"
                     android:id="@+id/tvSucKhoe"
                     android:textAlignment="textEnd"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-light"
@@ -664,7 +664,7 @@
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="5dp">
 
                 <!--Text view to display R -->
                 <TextView
@@ -672,7 +672,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Giáo dục"
-                    android:textSize="18sp"/>
+                    android:textSize="14sp"/>
 
                 <!--Text view to display the -->
                 <!-- percentage of programming language -->
@@ -683,7 +683,7 @@
                     android:text="0"
                     android:id="@+id/tvGiaoDuc"
                     android:textAlignment="textEnd"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-light"
@@ -704,7 +704,7 @@
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="5dp">
 
                 <!--Text view to display R -->
                 <TextView
@@ -712,7 +712,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Sự kiện"
-                    android:textSize="18sp"/>
+                    android:textSize="14sp"/>
 
                 <!--Text view to display the -->
                 <!-- percentage of programming language -->
@@ -723,7 +723,7 @@
                     android:text="0"
                     android:id="@+id/tvSuKien"
                     android:textAlignment="textEnd"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-light"
@@ -744,7 +744,7 @@
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="5dp">
 
                 <!--Text view to display R -->
                 <TextView
@@ -752,7 +752,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Khác"
-                    android:textSize="18sp"/>
+                    android:textSize="14sp"/>
 
                 <!--Text view to display the -->
                 <!-- percentage of programming language -->
@@ -763,7 +763,7 @@
                     android:text="0"
                     android:id="@+id/tvKhac_Chi"
                     android:textAlignment="textEnd"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-light"

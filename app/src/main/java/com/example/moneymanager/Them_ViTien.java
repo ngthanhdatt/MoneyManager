@@ -35,16 +35,18 @@ public class Them_ViTien extends AppCompatActivity {
         btnluu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String loaivi = etLoaivi.getText().toString().trim();
-                String sotien = etSotien.getText().toString().trim();
-                int intsotien = Integer.parseInt(sotien);
-                ViTien viTien = new ViTien(loaivi,intsotien);
-                if(loaivi.isEmpty()){
-                    Toast.makeText(Them_ViTien.this, "Mục ví tiền không được bỏ trống", Toast.LENGTH_SHORT).show();
-                }if (sotien.isEmpty()){
-                    Toast.makeText(Them_ViTien.this, "Mục số tiền không được bỏ trống", Toast.LENGTH_SHORT).show();
-                }else{
-                    db.addViTien(viTien);
+                if (etLoaivi.getText().toString().isEmpty() || etSotien.getText().toString().isEmpty()) {
+                    Toast.makeText(Them_ViTien.this, "Hãy nhập đủ các mục tên ví,só tiền", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    String loai = etLoaivi.getText().toString();
+                    int money = Integer.parseInt(etSotien.getText().toString());
+
+                    ViTien viTien1 = new ViTien(loai, money);
+                    db.addViTien(viTien1);
+                    Toast.makeText(Them_ViTien.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
+                    etLoaivi.setText("");
+                    etSotien.setText("");
                 }
             }
         });
@@ -54,6 +56,7 @@ public class Them_ViTien extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
+                intent.putExtra("classFrom", Them_ViTien.class.toString());
                 v.getContext().startActivity(intent);
             }
         });

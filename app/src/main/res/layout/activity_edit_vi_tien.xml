@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/edit_vitien"
-    tools:context=".Fragment.ViTien.Edit_ViTien">
+    tools:context=".Edit_ViTien">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/frag_Toolbar_SuaViTien"

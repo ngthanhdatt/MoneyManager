@@ -224,6 +224,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{viTien.getName()});
     }
 
+    public int updateViTienByID(ViTien viTien,ViTien viTien2) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_VI_NAME, viTien.getName());
+        values.put(COLUMN_VI_MONEY, viTien.getMoney());
+
+        // updating row
+        return db.update(TABLE_VI, values, COLUMN_VI_ID + " = ?",
+                new String[]{String.valueOf(viTien2.getId())});
+    }
+
     public List<ViTien> getAllViTien() {
 
         List<ViTien> viTienList = new ArrayList<ViTien>();
@@ -479,24 +491,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteThu(Thu thu) {
+    public void deleteThu(Thu thu,ViTien viTien) {
         SQLiteDatabase db = this.getWritableDatabase();
+        ViTien viTien2= new ViTien(viTien.getName(),viTien.getMoney()-thu.getSotien());
+        updateViTienByID(viTien2,viTien);
         db.delete(TABLE_THU, COLUMN_THU_ID + "=?", new String[]{String.valueOf(thu.getId())});
         db.close();
     }
 
-    public int updateThu(Thu thu) {
+    public int updateThu(Thu thu, Thu thu2, ViTien viTien) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_THU_SOTIEN, thu.getSotien());
         values.put(COLUMN_THU_THOIGIAN, thu.getThoiGian());
         values.put(COLUMN_THU_LOAITHUID, thu.getIDLoaiThu());
-        values.put(COLUMN_THU_VITIENID, thu.getIDViTien());
+        values.put(COLUMN_THU_VITIENID, thu.getViTien().getId());
         values.put(COLUMN_THU_GHICHU, thu.getGhichu());
+        viTien = new ViTien(viTien.getName(),viTien.getMoney()-thu2.getSotien()+thu.getSotien());
+        updateViTien(viTien);
         // updating row
         return db.update(TABLE_THU, values, COLUMN_THU_ID + " = ?",
-                new String[]{String.valueOf(thu.getId())});
+                new String[]{String.valueOf(thu2.getId())});
     }
 
     public List<Thu> getAllThu() {
@@ -537,13 +553,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteChi(Chi chi) {
+    public void deleteChi(Chi chi,ViTien viTien) {
         SQLiteDatabase db = this.getWritableDatabase();
+        ViTien viTien2= new ViTien(viTien.getName(),viTien.getMoney()+chi.getSotien());
+        updateViTienByID(viTien2,viTien);
         db.delete(TABLE_CHI, COLUMN_CHI_ID + "=?", new String[]{String.valueOf(chi.getId())});
         db.close();
     }
 
-    public int updateChi(Chi chi) {
+    public int updateChi(Chi chi,Chi chi2,ViTien viTien) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -552,10 +570,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_CHI_LOAICHIID, chi.getLoaiChiId());
         values.put(COLUMN_CHI_VITIENID, chi.getVitienId());
         values.put(COLUMN_CHI_GHICHU, chi.getGhichu());
+        viTien = new ViTien(viTien.getName(),viTien.getMoney()+chi2.getSotien()-chi.getSotien());
+        updateViTien(viTien);
 
         // updating row
         return db.update(TABLE_CHI, values, COLUMN_CHI_ID + " = ?",
-                new String[]{String.valueOf(chi.getId())});
+                new String[]{String.valueOf(chi2.getId())});
     }
 
 

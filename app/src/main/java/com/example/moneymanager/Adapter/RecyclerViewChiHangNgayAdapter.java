@@ -1,6 +1,7 @@
 package com.example.moneymanager.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.moneymanager.Edit_Chi;
+import com.example.moneymanager.Edit_Thu;
 import com.example.moneymanager.Model.Chi;
 import com.example.moneymanager.Model.Thu;
 import com.example.moneymanager.R;
@@ -47,12 +50,12 @@ public class RecyclerViewChiHangNgayAdapter extends RecyclerView.Adapter<Recycle
         holder.setClickListener(new ViewHolder.ClickListener() {
             @Override
             public void onClickListener(int position, View v) {
-//                Intent intent = new Intent(context, Edit_ViTien.class);
+                Intent intent = new Intent(context, Edit_Chi.class);
 //                intent.putExtra("title", vi.getName());
 //                String tien = String.valueOf(vi.getMoney());
 //                intent.putExtra("content", tien);
-//                intent.putExtra("vi", vi);
-//                context.startActivity(intent);
+                intent.putExtra("chi", chi);
+                context.startActivity(intent);
             }
         });
     }

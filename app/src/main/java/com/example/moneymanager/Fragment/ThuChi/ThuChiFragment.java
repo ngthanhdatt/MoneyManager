@@ -24,6 +24,7 @@ import android.widget.DatePicker;
 import com.example.moneymanager.Adapter.FragmentThongKeAdapter;
 import com.example.moneymanager.Adapter.FragmentThuChiAdaper;
 import com.example.moneymanager.Database.DatabaseHelper;
+import com.example.moneymanager.MainActivity;
 import com.example.moneymanager.R;
 import com.example.moneymanager.Them_ThuChi;
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -44,6 +45,7 @@ public class ThuChiFragment extends Fragment {
     private Button start;
     private Button end;
     private int year, month, date;
+    private int data;
 
     public ThuChiFragment() {
         // Required empty public constructor
@@ -53,6 +55,8 @@ public class ThuChiFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        MainActivity activity = (MainActivity) getActivity();
+        data = activity.getData();
         return inflater.inflate(R.layout.fragment_thu_chi, container, false);
     }
 
@@ -73,6 +77,12 @@ public class ThuChiFragment extends Fragment {
 
         FragmentThuChiAdaper fragmentThuChiAdaper = new FragmentThuChiAdaper(this.getActivity());
         viewPager2.setAdapter(fragmentThuChiAdaper);
+        if(data==0){
+            viewPager2.setCurrentItem(0);
+        }
+        if(data==1){
+            viewPager2.setCurrentItem(1);
+        }
 
         new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override

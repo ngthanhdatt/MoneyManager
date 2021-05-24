@@ -1,12 +1,10 @@
 package com.example.moneymanager;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,9 +17,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.example.moneymanager.Adapter.BottomSheetDialog.InterfaceLoaiChi;
 import com.example.moneymanager.Adapter.BottomSheetDialog.InterfaceLoaiThu;
 import com.example.moneymanager.Adapter.BottomSheetDialog.InterfaceViTien;
+import com.example.moneymanager.Adapter.FragmentAdapter;
+import com.example.moneymanager.Adapter.FragmentThuChiAdaper;
 import com.example.moneymanager.Database.DatabaseHelper;
 import com.example.moneymanager.Fragment.ThuChi.BottomSheetDialog.BottomSheetDialog_LoaiChi;
 import com.example.moneymanager.Fragment.ThuChi.BottomSheetDialog.BottomSheetDialog_LoaiThu;
@@ -31,8 +35,6 @@ import com.example.moneymanager.Model.LoaiChi;
 import com.example.moneymanager.Model.LoaiThu;
 import com.example.moneymanager.Model.Thu;
 import com.example.moneymanager.Model.ViTien;
-import com.google.android.material.tabs.TabItem;
-import com.google.android.material.tabs.TabLayout;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,9 +44,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class Them_ThuChi extends AppCompatActivity{
-    DatabaseHelper db= new DatabaseHelper(getBaseContext());
-
+public class Edit_Chi extends AppCompatActivity {
     Toolbar toolbar1;
     Toolbar toolbar2;
     Toolbar toolbar3;
@@ -54,7 +54,7 @@ public class Them_ThuChi extends AppCompatActivity{
 
     Button back;
     Button luu ;
-    Button tieptuc ;
+    Button xoa ;
     Button editNgay ;
     Button editGio ;
 
@@ -70,48 +70,51 @@ public class Them_ThuChi extends AppCompatActivity{
     EditText editSotien ;
     EditText editGhichu ;
 
-    TabLayout tabLayout ;
-    TabItem tabThu;
-    TabItem tabChi;
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_them_thu_chi);
+        setContentView(R.layout.activity_edit_thuchi);
 
         DatabaseHelper db = new DatabaseHelper(this);
 
 
-        toolbar1 = findViewById(R.id.frag_Toolbar_ThemThuChi);
-        toolbar2 = findViewById(R.id.frag_Toolbar_ThemThuChi_ngay);
-        toolbar3 = findViewById(R.id.frag_Toolbar_ThemThuChi_ViTien);
-        toolbar4 = findViewById(R.id.frag_Toolbar_ThemThuChi_TheLoai);
-        toolbar5 = findViewById(R.id.frag_Toolbar_ThemThuChi_SoTien);
+        toolbar1 = findViewById(R.id.frag_Toolbar_EditThuChi);
+        toolbar2 = findViewById(R.id.frag_Toolbar_EditThuChi_ngay);
+        toolbar3 = findViewById(R.id.frag_Toolbar_EditThuChi_ViTien);
+        toolbar4 = findViewById(R.id.frag_Toolbar_EditThuChi_TheLoai);
+        toolbar5 = findViewById(R.id.frag_Toolbar_EditThuChi_SoTien);
         toolbar6 = findViewById(R.id.frag_Toolbar_ThemThuChi_GhiChu);
 
-        back = findViewById(R.id.frag_Toolbar_ThemThuChi_back);
-        back.setText("Thu");
-        luu = findViewById(R.id.button_themthuchi);
-//        tieptuc = findViewById(R.id.button_tieptuc);
-        editNgay = findViewById(R.id.edit_Ngay);
-        editGio = findViewById(R.id.edit_Gio);
+        back = findViewById(R.id.frag_Toolbar_EditThuChi_back);
+        luu = findViewById(R.id.button_editthuchi);
+        xoa=findViewById(R.id.button_xoathuchi);
+        editNgay = findViewById(R.id.Edit_Ngay);
+        editGio = findViewById(R.id.Edit_Gio);
 
-        ngay = findViewById(R.id.TextView_ngay);
-        vitien = findViewById(R.id.TextView_vitien);
-        theloai = findViewById(R.id.TextView_theloai);
-        sotien = findViewById(R.id.TextView_sotien);
-        ghichu = findViewById(R.id.TextView_ghichu);
+        ngay = findViewById(R.id.Edit_TextView_ngay);
+        vitien = findViewById(R.id.Edit_TextView_vitien);
+        theloai = findViewById(R.id.Edit_TextView_theloai);
+        sotien = findViewById(R.id.Edit_TextView_sotien);
+        ghichu = findViewById(R.id.Edit_TextView_ghichu);
 
 
-        editVitien = findViewById(R.id.editText_vitien);
-        editTheloai = findViewById(R.id.editText_theloai);
-        editSotien = findViewById(R.id.editText_sotien);
-        editGhichu = findViewById(R.id.editText_ghichu);
+        editVitien = findViewById(R.id.EditText_vitien);
+        editTheloai = findViewById(R.id.EditText_theloai);
+        editSotien = findViewById(R.id.EditText_sotien);
+        editGhichu = findViewById(R.id.EditText_ghichu);
 
-        tabLayout = findViewById(R.id.frag_tabLayout_ThemThuChi);
-        tabThu = findViewById(R.id.tabThu);
-        tabChi = findViewById(R.id.tabChi);
+        Intent intent = getIntent();
+        Chi chi = (Chi) intent.getSerializableExtra("chi");
+        String loai = chi.getLoaiChi().getName();
+        String vi = chi.getViTien().getName();
+        String tien = String.valueOf(chi.getSotien());
+        String ghichu = chi.getGhichu();
+        editVitien.setText(vi);
+        editTheloai.setText(loai);
+        editSotien.setText(tien);
+        editGhichu.setText(ghichu);
+
 
 
         String currentDate = new SimpleDateFormat("dd/MM/yyyy(EEE)", Locale.getDefault()).format(new Date());
@@ -178,12 +181,7 @@ public class Them_ThuChi extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
-                if (back.getText().toString().matches("Thu")) {
-                    intent.putExtra("classFrom", Them_ThuChi.class.toString() + "0");
-                }
-                if (back.getText().toString().matches("Chi")) {
-                    intent.putExtra("classFrom", Them_ThuChi.class.toString() + "1");
-                }
+                intent.putExtra("classFrom", Edit_Chi.class.toString());
                 v.getContext().startActivity(intent);
             }
         });
@@ -202,30 +200,6 @@ public class Them_ThuChi extends AppCompatActivity{
             }
         });
 
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                if (tab.getPosition() == 0) {
-                    back.setText("Thu");
-                }
-                if (tab.getPosition() == 1) {
-                    back.setText("Chi");
-                }
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-
         //editTheloai.setInputType(InputType.TYPE_NULL);
         editTheloai.setShowSoftInputOnFocus(false);
         editTheloai.setOnTouchListener(new View.OnTouchListener() {
@@ -233,12 +207,7 @@ public class Them_ThuChi extends AppCompatActivity{
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (back.getText() == "Thu") {
-                        openBottomLoaiThu();
-                    }
-                    if (back.getText() == "Chi") {
-                        openBottomLoaiChi();
-                    }
+                    openBottomLoaiChi();
                     return true;
                 }
                 return false;
@@ -248,57 +217,52 @@ public class Them_ThuChi extends AppCompatActivity{
         luu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (editTheloai.getText().toString().isEmpty() || editVitien.getText().toString().isEmpty()
                         || editSotien.getText().toString().isEmpty()) {
-                    Toast.makeText(Them_ThuChi.this, "Hãy nhập đủ các mục ví tiền,thể loại,só tiền", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Edit_Chi.this, "Hãy nhập đủ các mục ví tiền,thể loại,só tiền", Toast.LENGTH_SHORT).show();
 
-                }
-                else{
+                } else {
                     String time = editNgay.getText().toString() + " " + editGio.getText().toString();
                     String ghichu = editGhichu.getText().toString();
                     Integer tien = Integer.parseInt(editSotien.getText().toString());
                     String vi = editVitien.getText().toString();
                     String loai = editTheloai.getText().toString();
                     ViTien viTien = db.getViTienByName(vi);
-                    if (back.getText() == "Thu") {
-                        LoaiThu loaiThu = db.getLoaiThuByName(loai);
-                        Thu thu = new Thu(tien, time, loaiThu, viTien, ghichu);
-                        db.addThu(thu, viTien);
-                        Toast.makeText(Them_ThuChi.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
-                    }
 
-                    if (back.getText() == "Chi") {
-                        LoaiChi loaiChi = db.getLoaiChiByName(loai);
-                        Chi chi = new Chi(tien, time, loaiChi, viTien, ghichu);
-                        db.addChi(chi, viTien);
-                        Toast.makeText(Them_ThuChi.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
-                    }
+                    LoaiChi loaiChi = db.getLoaiChiByName(loai);
+                    Chi chi2 = new Chi(tien, time, loaiChi, viTien, ghichu);
+                    db.updateChi(chi2, chi, viTien);
+                    Toast.makeText(Edit_Chi.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
 
-                    editTheloai.setText("");
-                    editGhichu.setText("");
-                    editVitien.setText("");
-                    editSotien.setText("");
+
                 }
             }
         });
 
-    }
-
-
-
-    private void openBottomLoaiThu(){
-        DatabaseHelper db= new DatabaseHelper(this);
-        List<LoaiThu> list= new ArrayList<>();
-        list =db.getAllLoaiThu();
-        BottomSheetDialog_LoaiThu bottomSheetDialog_loaiThu= new BottomSheetDialog_LoaiThu(list, new InterfaceLoaiThu() {
+        xoa.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void clickItem(LoaiThu loaiThu) {
-                editTheloai.setText(loaiThu.getName());
+            public void onClick(View v) {
+                new AlertDialog.Builder(v.getContext())
+                        .setTitle("Delete ")
+                        .setMessage("Bạn có chắc chắn muốn xóa không?")
+
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                db.deleteChi(chi, chi.getViTien());
+                                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                                intent.putExtra("classFrom", Edit_Chi.class.toString());
+                                v.getContext().startActivity(intent);
+                            }
+                        })
+
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
         });
-        bottomSheetDialog_loaiThu.show(getSupportFragmentManager(),bottomSheetDialog_loaiThu.getTag());
     }
+
+
 
     private void openBottomLoaiChi(){
         DatabaseHelper db= new DatabaseHelper(this);
@@ -313,6 +277,7 @@ public class Them_ThuChi extends AppCompatActivity{
         bottomSheetDialog_loaiChi.show(getSupportFragmentManager(),bottomSheetDialog_loaiChi.getTag());
     }
 
+
     private void openBottomViTien(){
         DatabaseHelper db= new DatabaseHelper(this);
         List<ViTien> list= new ArrayList<>();
@@ -325,6 +290,4 @@ public class Them_ThuChi extends AppCompatActivity{
         });
         bottomSheetDialog_viTien.show(getSupportFragmentManager(),bottomSheetDialog_viTien.getTag());
     }
-
-
 }

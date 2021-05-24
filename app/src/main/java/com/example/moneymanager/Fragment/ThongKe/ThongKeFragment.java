@@ -88,7 +88,6 @@ public class ThongKeFragment extends Fragment {
         }).attach();
 
 
-
         Calendar cal = Calendar.getInstance();
         int last_day = cal.getActualMaximum(Calendar.DATE);
         String currentTime = new SimpleDateFormat("MM/yyyy", Locale.getDefault()).format(new Date());

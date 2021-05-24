@@ -16,10 +16,11 @@ public class Init extends AppCompatActivity {
         boolean b=new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(Init.this, com.example.moneymanager.Login.class);
+                Intent intent = new Intent(Init.this, MainActivity.class);
+                intent.putExtra("classFrom", Init.class.toString());
                 startActivity(intent);
                 finish();
             }
-        },1500);
+        },100);
     }
 }

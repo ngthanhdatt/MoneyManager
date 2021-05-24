@@ -70,7 +70,7 @@ public class CaiDatFragment extends Fragment {
         Toolbar toolbar4 =(Toolbar)view.findViewById(R.id.frag_Toolbar4_caidat);
 
         TextView textView = view.findViewById((R.id.frag_Toolbar_caidat_TextView));
-        TextView tvShowUserName = view.findViewById(R.id.tvShowUserName);
+        //TextView tvShowUserName = view.findViewById(R.id.tvShowUserName);
 
         Button caidat = view.findViewById((R.id.frag_viewPager_caidat_CaiDat));
         Button vitien = view.findViewById((R.id.frag_viewPager_caidat_ViTien));

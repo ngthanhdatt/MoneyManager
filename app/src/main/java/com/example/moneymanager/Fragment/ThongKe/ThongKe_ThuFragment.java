@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
@@ -37,7 +38,9 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -59,12 +62,16 @@ public class ThongKe_ThuFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        tvLuong=view.findViewById(R.id.tvLuong);
-        tvThuong=view.findViewById(R.id.tvThuong);
-        tvThemGio=view.findViewById(R.id.tvThemGio);
-        tvKhac=view.findViewById(R.id.tvKhac);
+        tvLuong = view.findViewById(R.id.tvLuong);
+        tvThuong = view.findViewById(R.id.tvThuong);
+        tvThemGio = view.findViewById(R.id.tvThemGio);
+        tvKhac = view.findViewById(R.id.tvKhac);
         pieChart = view.findViewById(R.id.piechart_thu);
-        setData();
+        try {
+            setData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //recyclerView = view.findViewById(R.id.frag_recyclerView_bieudo_thu);
         // = view.findViewById(R.id.bieudo_thu);
@@ -98,27 +105,46 @@ public class ThongKe_ThuFragment extends Fragment {
 
     }
 
-    private void setData(){
-        DatabaseHelper db= new DatabaseHelper(getContext());
-        List<Thu> list = new ArrayList<>();
-        list=db.getAllThu();
-        int luong=0;
-        int thuong=0;
-        int themgio=0;
-        int khac=0;
+    private void setData() throws Exception {
+        DatabaseHelper db = new DatabaseHelper(getContext());
 
-        for(int i=0;i<list.size();i++){
-            if(list.get(i).getLoaiThu().getId()==db.getLoaiThuByName("Tiền lương").getId()){
-                luong+= list.get(i).getSotien();
-            }
-            if(list.get(i).getLoaiThu().getId()==db.getLoaiThuByName("Tiền thưởng").getId()){
-                thuong+= list.get(i).getSotien();
-            }
-            if(list.get(i).getLoaiThu().getId()==db.getLoaiThuByName("Trả thêm giờ").getId()){
-                themgio+= list.get(i).getSotien();
-            }
-            if(list.get(i).getLoaiThu().getId()==db.getLoaiThuByName("Khác").getId()){
-                khac+= list.get(i).getSotien();
+        List<Thu> list = new ArrayList<>();
+        list = db.getAllThu();
+
+
+        String start=db.getBatDau();
+        String end=db.getKetThuc();
+        SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+        Date startDate = format1.parse(start);
+        Date endDate = format1.parse(end);
+
+        SimpleDateFormat format2 = new SimpleDateFormat("dd/MM/yyyy(EEE) hh:mm");
+        String start2= format2.format(startDate);
+        String end2 = format2.format(endDate);
+        Date startDate2=format2.parse(start2);
+        Date endDate2 = format2.parse(end2);
+
+        int luong = 0;
+        int thuong = 0;
+        int themgio = 0;
+        int khac = 0;
+
+
+        for(int i=0;i<list.size();i++) {
+            if(format2.parse(list.get(i).getThoiGian()).before(endDate2) && format2.parse(list.get(i).getThoiGian()).after(startDate2)) {
+
+                if (list.get(i).getLoaiThu().getId() == db.getLoaiThuByName("Tiền lương").getId()) {
+                    luong += list.get(i).getSotien();
+                }
+                if (list.get(i).getLoaiThu().getId() == db.getLoaiThuByName("Tiền thưởng").getId()) {
+                    thuong += list.get(i).getSotien();
+                }
+                if (list.get(i).getLoaiThu().getId() == db.getLoaiThuByName("Trả thêm giờ").getId()) {
+                    themgio += list.get(i).getSotien();
+                }
+                if (list.get(i).getLoaiThu().getId() == db.getLoaiThuByName("Khác").getId()) {
+                    khac += list.get(i).getSotien();
+                }
             }
         }
         tvLuong.setText(Integer.toString(luong));
@@ -153,3 +179,4 @@ public class ThongKe_ThuFragment extends Fragment {
     }
 
 }
+

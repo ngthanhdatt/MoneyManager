@@ -14,6 +14,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.moneymanager.Adapter.FragmentAdapter;
 import com.example.moneymanager.Database.DatabaseHelper;
+import com.example.moneymanager.Fragment.ThongKe.ThongKeFragment;
+import com.example.moneymanager.Fragment.ThongKe.ThongKe_ThuFragment;
 import com.example.moneymanager.Fragment.ViTien.ViTienFragment;
 import com.example.moneymanager.Model.Chi;
 import com.example.moneymanager.Model.LoaiChi;
@@ -23,7 +25,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainActivity extends AppCompatActivity {
-    String id;
+
+    String startDate;
+    String endDate;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         db.addLoaiChi_Default();
         db.addLoaiThu_Default();
         db.addVi_Default();
+        db.addThoiGian();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_bottom);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -73,9 +78,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    public String getId() {
-        return id;
     }
 }

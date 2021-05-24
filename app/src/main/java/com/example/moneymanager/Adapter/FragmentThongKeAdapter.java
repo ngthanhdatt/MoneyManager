@@ -30,4 +30,5 @@ public class FragmentThongKeAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return 2;
     }
+
 }

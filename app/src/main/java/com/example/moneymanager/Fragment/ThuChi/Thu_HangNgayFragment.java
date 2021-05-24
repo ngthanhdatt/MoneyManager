@@ -15,17 +15,19 @@ import android.view.ViewGroup;
 
 import com.example.moneymanager.Adapter.RecyclerViewThuHangNgayAdapter;
 import com.example.moneymanager.Database.DatabaseHelper;
+import com.example.moneymanager.Model.Chi;
 import com.example.moneymanager.Model.Thu;
 import com.example.moneymanager.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 public class Thu_HangNgayFragment extends Fragment {
     private RecyclerView recyclerView;
     private DatabaseHelper db;
-    private List<Thu> listThu;
     private RecyclerViewThuHangNgayAdapter adapter;
 
     public Thu_HangNgayFragment(){
@@ -36,7 +38,6 @@ public class Thu_HangNgayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         db = new DatabaseHelper(getActivity());
-        listThu = new ArrayList<>();
         db = new DatabaseHelper(this.getContext());
         return inflater.inflate(R.layout.fragment_thu__hang_ngay, container, false);
     }
@@ -45,7 +46,6 @@ public class Thu_HangNgayFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        listThu = db.getAllThu();
         adapter = new RecyclerViewThuHangNgayAdapter();
         recyclerView = view.findViewById(R.id.frag_recyclerView_thu_hangngay);
 
@@ -57,6 +57,37 @@ public class Thu_HangNgayFragment extends Fragment {
         recyclerView.addItemDecoration(itemDecoration);
         registerForContextMenu(this.recyclerView);
 
-        adapter.updateDataThu(listThu);
+        List<Thu> list = new ArrayList<>();
+        try {
+            list =getData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        adapter.updateDataThu(list);
+    }
+
+    public List getData() throws Exception{
+        List<Thu> list = new ArrayList<>();
+        list = db.getAllThu();
+
+        String start=db.getBatDau();
+        String end=db.getKetThuc();
+        SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+        Date startDate = format1.parse(start);
+        Date endDate = format1.parse(end);
+
+        SimpleDateFormat format2 = new SimpleDateFormat("dd/MM/yyyy(EEE) hh:mm");
+        String start2= format2.format(startDate);
+        String end2 = format2.format(endDate);
+        Date startDate2=format2.parse(start2);
+        Date endDate2 = format2.parse(end2);
+
+        List<Thu> listThu = new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            if(format2.parse(list.get(i).getThoiGian()).before(endDate2) && format2.parse(list.get(i).getThoiGian()).after(startDate2)) {
+                listThu.add(list.get(i));
+            }
+        }
+        return listThu;
     }
 }

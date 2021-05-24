@@ -3,6 +3,7 @@ package com.example.moneymanager.Fragment.ThongKe;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 
 import com.example.moneymanager.Adapter.FragmentThongKeAdapter;
+import com.example.moneymanager.Database.DatabaseHelper;
 import com.example.moneymanager.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -56,6 +58,8 @@ public class ThongKeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        DatabaseHelper db = new DatabaseHelper(getContext());
+
         tabLayout = view.findViewById(R.id.frag_tabLayout_thongke);
         viewPager2 = view.findViewById(R.id.frag_viewPager_thongke);
 
@@ -69,11 +73,29 @@ public class ThongKeFragment extends Fragment {
         end = (Button)view.findViewById(R.id.frag_Toolbar_thongke_EndDate);
 
 
+        FragmentThongKeAdapter fragmentThongKeAdapter = new FragmentThongKeAdapter(this.getActivity());
+        viewPager2.setAdapter(fragmentThongKeAdapter);
+
+        new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                if(position == 0){
+                    tab.setText("Thu");
+                } else if(position == 1){
+                    tab.setText("Chi");
+                }
+            }
+        }).attach();
+
+
+
         Calendar cal = Calendar.getInstance();
         int last_day = cal.getActualMaximum(Calendar.DATE);
-        String currentTime = new SimpleDateFormat("MM-yyyy", Locale.getDefault()).format(new Date());
-        start.setText("01-" +currentTime);
-        end.setText(Integer.toString(last_day)+'-'+currentTime);
+        String currentTime = new SimpleDateFormat("MM/yyyy", Locale.getDefault()).format(new Date());
+        start.setText("01/" +currentTime);
+        end.setText(Integer.toString(last_day)+'/'+currentTime);
+        db.updateBatDau(start.getText().toString());
+        db.updateKetThuc(end.getText().toString());
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +110,12 @@ public class ThongKeFragment extends Fragment {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
 
-                                start.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-
+                                start.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                db.updateBatDau(start.getText().toString());
+                                int t=tabLayout.getSelectedTabPosition();
+                                FragmentThongKeAdapter fragmentThongKeAdapter = new FragmentThongKeAdapter(getActivity());
+                                viewPager2.setAdapter(fragmentThongKeAdapter);
+                                viewPager2.setCurrentItem(t);
                             }
                         }, year, month, date);
                 datePickerDialog.show();
@@ -109,27 +135,19 @@ public class ThongKeFragment extends Fragment {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
 
-                                end.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                end.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                db.updateKetThuc(end.getText().toString());
+                                int t=tabLayout.getSelectedTabPosition();
+                                FragmentThongKeAdapter fragmentThongKeAdapter = new FragmentThongKeAdapter(getActivity());
+                                viewPager2.setAdapter(fragmentThongKeAdapter);
+                                viewPager2.setCurrentItem(t);
                             }
                         }, year, month, date);
                 datePickerDialog.show();
             }
         });
 
-
-        FragmentThongKeAdapter fragmentThongKeAdapter = new FragmentThongKeAdapter(this.getActivity());
-        viewPager2.setAdapter(fragmentThongKeAdapter);
-
-        new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
-            @Override
-            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                if(position == 0){
-                    tab.setText("Thu");
-                } else if(position == 1){
-                    tab.setText("Chi");
-                }
-            }
-        }).attach();
     }
-
 }
+
+

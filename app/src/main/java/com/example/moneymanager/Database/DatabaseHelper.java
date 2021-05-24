@@ -60,6 +60,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_LOAICHI_ID = "loaichi_id";
     private static final String COLUMN_LOAICHI_NAME = "loaichi_name";
 
+    //table thoi gian
+    private static final String TABLE_THOIGIAN = "thoigian";
+    private static final String COLUMN_THOIGIAN_ID = "thoigian_id";
+    private static final String COLUMN_THOIGIAN_BATDAU = "thoigian_batdau";
+    private static final String COLUMN_THOIGIAN_KETTHUC = "thoigian_kethuc";
+    private static final String COLUMN_THOIGIAN_THANG="thoigian_thang";
+    private static final String COLUMN_THOIGIAN_BD = "thoigian_batdau(khoi tao)";
+    private static final String COLUMN_THOIGIAN_KT="thoigian_kethuc(khoi tao)";
+
     private String create_user = "CREATE TABLE " + TABLE_USER + "(" +
             COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             COLUMN_USER_NAME + " TEXT, " +
@@ -94,6 +103,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COLUMN_LOAICHI_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             COLUMN_LOAICHI_NAME + " TEXT" + ")";
 
+    private String create_thoigian = "CREATE TABLE " + TABLE_THOIGIAN + "(" +
+            COLUMN_THOIGIAN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            COLUMN_THOIGIAN_BATDAU + " TEXT, " +
+            COLUMN_THOIGIAN_KETTHUC + " TEXT " +")";
+
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -107,6 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(create_loaithu);
         db.execSQL(create_chi);
         db.execSQL(create_thu);
+        db.execSQL(create_thoigian);
     }
 
     @Override
@@ -117,6 +132,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOAITHU);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHI);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_THU);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_THOIGIAN);
         onCreate(db);
     }
 
@@ -562,6 +578,78 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return list;
+    }
+
+
+
+    //===============================thoigian====================================//
+    public int getThoiGianCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_THOIGIAN;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
+    public void addThoiGian() {
+        int count = this.getThoiGianCount();
+        if (count == 0) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLUMN_THOIGIAN_BATDAU, 0);
+            contentValues.put(COLUMN_THOIGIAN_KETTHUC, 0);
+            db.insert(TABLE_THOIGIAN, null, contentValues);
+            db.close();
+        }
+    }
+
+    public int updateBatDau(String batdau) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_THOIGIAN_BATDAU, batdau);
+
+        // updating row
+        return db.update(TABLE_THOIGIAN, values, COLUMN_THOIGIAN_ID + " = ?",
+                new String[]{String.valueOf(1)});
+    }
+
+    public int updateKetThuc(String ketthuc) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_THOIGIAN_KETTHUC, ketthuc);
+
+        // updating row
+        return db.update(TABLE_THOIGIAN, values, COLUMN_THOIGIAN_ID + " = ?",
+                new String[]{String.valueOf(1)});
+    }
+
+    public String getBatDau() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_THOIGIAN, new String[] { COLUMN_THOIGIAN_ID,
+                        COLUMN_THOIGIAN_BATDAU,COLUMN_THOIGIAN_KETTHUC}, COLUMN_THOIGIAN_ID + "=?",
+                new String[] { String.valueOf(1) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        String t=cursor.getString(1);
+        return t;
+    }
+
+    public String getKetThuc() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_THOIGIAN, new String[] { COLUMN_THOIGIAN_ID,
+                        COLUMN_THOIGIAN_BATDAU,COLUMN_THOIGIAN_KETTHUC}, COLUMN_THOIGIAN_ID + "=?",
+                new String[] { String.valueOf(1) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        String t=cursor.getString(2);
+        return t;
     }
 
 }

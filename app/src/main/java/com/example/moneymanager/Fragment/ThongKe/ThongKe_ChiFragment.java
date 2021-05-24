@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -21,7 +22,9 @@ import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -99,13 +102,30 @@ public class ThongKe_ChiFragment extends Fragment {
 
 
         pieChart = view.findViewById(R.id.piechart_chi);
-        setData();
+        try {
+            setData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    private void setData(){
+    private void setData()throws Exception{
         DatabaseHelper db= new DatabaseHelper(getContext());
         List<Chi> list = new ArrayList<>();
         list=db.getAllChi();
+
+        String start=db.getBatDau();
+        String end=db.getKetThuc();
+        SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+        Date startDate = format1.parse(start);
+        Date endDate = format1.parse(end);
+
+        SimpleDateFormat format2 = new SimpleDateFormat("dd/MM/yyyy(EEE) hh:mm");
+        String start2= format2.format(startDate);
+        String end2 = format2.format(endDate);
+        Date startDate2=format2.parse(start2);
+        Date endDate2 = format2.parse(end2);
+
         int anuong=0;
         int giaitri=0;
         int sothich=0;
@@ -119,38 +139,40 @@ public class ThongKe_ChiFragment extends Fragment {
         int khac=0;
 
         for(int i=0;i<list.size();i++){
-            if(list.get(i).getLoaiChi().getId()==db.getLoaiChiByName("Ăn uống").getId()){
-                anuong+= list.get(i).getSotien();
-            }
-            if(list.get(i).getLoaiChi().getId()==db.getLoaiChiByName("Giải trí").getId()){
-                giaitri+= list.get(i).getSotien();
-            }
-            if(list.get(i).getLoaiChi().getId()==db.getLoaiChiByName("Sinh hoạt").getId()){
-                sinhhoat+= list.get(i).getSotien();
-            }
-            if(list.get(i).getLoaiChi().getId()==db.getLoaiChiByName("Sở thích").getId()){
-                sothich+= list.get(i).getSotien();
-            }
-            if(list.get(i).getLoaiChi().getId()==db.getLoaiChiByName("Giao thông").getId()){
-                giaothong+= list.get(i).getSotien();
-            }
-            if(list.get(i).getLoaiChi().getId()==db.getLoaiChiByName("Áo quần").getId()){
-                aoquan+= list.get(i).getSotien();
-            }
-            if(list.get(i).getLoaiChi().getId()==db.getLoaiChiByName(" Làm đẹp").getId()){
-                lamdep+= list.get(i).getSotien();
-            }
-            if(list.get(i).getLoaiChi().getId()==db.getLoaiChiByName("Sự kiện").getId()){
-                sukien+= list.get(i).getSotien();
-            }
-            if(list.get(i).getLoaiChi().getId()==db.getLoaiChiByName("Giáo dục").getId()){
-                giaoduc+= list.get(i).getSotien();
-            }
-            if(list.get(i).getLoaiChi().getId()==db.getLoaiChiByName("Sức khỏe").getId()){
-                suckhoe+= list.get(i).getSotien();
-            }
-            if(list.get(i).getLoaiChi().getId()==db.getLoaiChiByName("Khác").getId()){
-                khac+= list.get(i).getSotien();
+            if(format2.parse(list.get(i).getThoiGian()).before(endDate2) && format2.parse(list.get(i).getThoiGian()).after(startDate2)) {
+                if (list.get(i).getLoaiChi().getId() == db.getLoaiChiByName("Ăn uống").getId()) {
+                    anuong += list.get(i).getSotien();
+                }
+                if (list.get(i).getLoaiChi().getId() == db.getLoaiChiByName("Giải trí").getId()) {
+                    giaitri += list.get(i).getSotien();
+                }
+                if (list.get(i).getLoaiChi().getId() == db.getLoaiChiByName("Sinh hoạt").getId()) {
+                    sinhhoat += list.get(i).getSotien();
+                }
+                if (list.get(i).getLoaiChi().getId() == db.getLoaiChiByName("Sở thích").getId()) {
+                    sothich += list.get(i).getSotien();
+                }
+                if (list.get(i).getLoaiChi().getId() == db.getLoaiChiByName("Giao thông").getId()) {
+                    giaothong += list.get(i).getSotien();
+                }
+                if (list.get(i).getLoaiChi().getId() == db.getLoaiChiByName("Áo quần").getId()) {
+                    aoquan += list.get(i).getSotien();
+                }
+                if (list.get(i).getLoaiChi().getId() == db.getLoaiChiByName(" Làm đẹp").getId()) {
+                    lamdep += list.get(i).getSotien();
+                }
+                if (list.get(i).getLoaiChi().getId() == db.getLoaiChiByName("Sự kiện").getId()) {
+                    sukien += list.get(i).getSotien();
+                }
+                if (list.get(i).getLoaiChi().getId() == db.getLoaiChiByName("Giáo dục").getId()) {
+                    giaoduc += list.get(i).getSotien();
+                }
+                if (list.get(i).getLoaiChi().getId() == db.getLoaiChiByName("Sức khỏe").getId()) {
+                    suckhoe += list.get(i).getSotien();
+                }
+                if (list.get(i).getLoaiChi().getId() == db.getLoaiChiByName("Khác").getId()) {
+                    khac += list.get(i).getSotien();
+                }
             }
 
         }
@@ -171,57 +193,57 @@ public class ThongKe_ChiFragment extends Fragment {
                 new PieModel(
                         "tvAnUong",
                         Integer.parseInt(tvAnUong.getText().toString()),
-                        Color.parseColor("#ff0000")));
+                        Color.parseColor("#800000")));
         pieChart.addPieSlice(
                 new PieModel(
                         "tvGiaiTri",
                         Integer.parseInt(tvGiaiTri.getText().toString()),
-                        Color.parseColor("#0000ff")));
-        pieChart.addPieSlice(
-                new PieModel(
-                        "tvSoThich",
-                        Integer.parseInt(tvSoThich.getText().toString()),
-                        Color.parseColor("#ffff00")));
+                        Color.parseColor("#ff0000")));
         pieChart.addPieSlice(
                 new PieModel(
                         "tvGiaoThong",
                         Integer.parseInt(tvGiaoThong.getText().toString()),
+                        Color.parseColor("#800080")));
+        pieChart.addPieSlice(
+                new PieModel(
+                        "tvSoThich",
+                        Integer.parseInt(tvSoThich.getText().toString()),
                         Color.parseColor("#ff00ff")));
         pieChart.addPieSlice(
                 new PieModel(
                         "tvSinhHoat",
                         Integer.parseInt(tvSinhHoat.getText().toString()),
-                        Color.parseColor("#ff00ff")));
+                        Color.parseColor("#008000")));
         pieChart.addPieSlice(
                 new PieModel(
                         "tvAoQuan",
                         Integer.parseInt(tvAoQuan.getText().toString()),
-                        Color.parseColor("#ff00ff")));
+                        Color.parseColor("#00ff00")));
         pieChart.addPieSlice(
                 new PieModel(
                         "tvLamDep",
                         Integer.parseInt(tvLamDep.getText().toString()),
-                        Color.parseColor("#ff00ff")));
+                        Color.parseColor("#808000")));
         pieChart.addPieSlice(
                 new PieModel(
                         "tvSucKhoe",
                         Integer.parseInt(tvSucKhoe.getText().toString()),
-                        Color.parseColor("#ff00ff")));
+                        Color.parseColor("#ffff00")));
         pieChart.addPieSlice(
                 new PieModel(
                         "tvGiaoDuc",
                         Integer.parseInt(tvGiaoDuc.getText().toString()),
-                        Color.parseColor("#ff00ff")));
+                        Color.parseColor("#000080")));
         pieChart.addPieSlice(
                 new PieModel(
                         "tvSuKien",
                         Integer.parseInt(tvSuKien.getText().toString()),
-                        Color.parseColor("#ff00ff")));
+                        Color.parseColor("#0000ff")));
         pieChart.addPieSlice(
                 new PieModel(
                         "tvKhac",
                         Integer.parseInt(tvKhac.getText().toString()),
-                        Color.parseColor("#ff00ff")));
+                        Color.parseColor("#00ffff")));
 
         pieChart.startAnimation();
 

@@ -17,13 +17,6 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <Button
-            android:id="@+id/frag_Toolbar_Vitien_back"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="left"
-            android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/back" />
 
         <TextView
             android:id="@+id/frag_Toolbar_vitien_TextView"

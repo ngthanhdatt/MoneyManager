@@ -1,91 +1,88 @@
 package com.example.moneymanager.Adapter;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.moneymanager.Fragment.ViTien.Edit_ViTien;
-import com.example.moneymanager.Fragment.ViTien.ViTienFragment;
-import com.example.moneymanager.R;
+import com.example.moneymanager.Model.Chi;
+import com.example.moneymanager.Model.Thu;
 import com.example.moneymanager.Model.ViTien;
+import com.example.moneymanager.R;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewVerticalAdapter extends RecyclerView.Adapter<RecyclerViewVerticalAdapter.ViewHolder> {
-    private List<ViTien> listVitien;
+public class RecyclerViewHangNgayAdapter extends RecyclerView.Adapter<RecyclerViewHangNgayAdapter.ViewHolder>{
+    private List<Thu> listThu;
     private Context context;
     private static final int MENU_ITEM_EDIT = 222;
     private static final int MENU_ITEM_DELETE = 444;
 
-    public RecyclerViewVerticalAdapter() {
-        this.listVitien = new ArrayList<>();
+    public RecyclerViewHangNgayAdapter() {
+        this.listThu = new ArrayList<>();
     }
 
     @NotNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_list_vi_tien, parent, false);
-        return new ViewHolder(v);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_detail__hang_ngay, parent, false);
+        return new RecyclerViewHangNgayAdapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewVerticalAdapter.ViewHolder holder, int position) {
-        ViTien vi = listVitien.get(position);
-        holder.title.setText("Tên ví: " + vi.getName());
-        holder.content.setText("Số tiền: " + vi.getMoney());
+    public void onBindViewHolder(@NonNull @NotNull RecyclerViewHangNgayAdapter.ViewHolder holder, int position) {
+        Thu thu = listThu.get(position);
+        holder.ngay.setText("Ngày: " + thu.getThoiGian());
+        holder.tien.setText("Số tiền: " + thu.getSotien());
+        holder.theloai.setText("Thể loại: " + thu.getLoaiThu().getName());
+        holder.vi.setText("Ví: " + thu.getViTien().getName());
 
         holder.setClickListener(new ViewHolder.ClickListener() {
             @Override
             public void onClickListener(int position, View v) {
-                Intent intent = new Intent(context, Edit_ViTien.class);
+//                Intent intent = new Intent(context, Edit_ViTien.class);
 //                intent.putExtra("title", vi.getName());
 //                String tien = String.valueOf(vi.getMoney());
 //                intent.putExtra("content", tien);
-                intent.putExtra("vi", vi);
-                context.startActivity(intent);
+//                intent.putExtra("vi", vi);
+//                context.startActivity(intent);
             }
         });
     }
 
-    // update data
-    public void updateData(List<ViTien> list) {
-        this.listVitien = list;
+
+
+    // update data thu
+    public void updateDataThu(List<Thu> thu) {
+        this.listThu = thu;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return (listVitien == null) ? 0 : listVitien.size();
+        return (listThu == null) ? 0 : listThu.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final TextView title;
-        private final TextView content;
-        private ClickListener clickListener;
+        private final TextView ngay, tien, theloai, vi;
 
+        private ClickListener clickListener;
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.tv_vitien_title);
-            content = itemView.findViewById(R.id.tv_vitien_content);
+            ngay = itemView.findViewById(R.id.tv_detail_ngay_ngay);
+            tien = itemView.findViewById(R.id.tv_detail_ngay_tien);
+            theloai = itemView.findViewById(R.id.tv_detail_ngay_theloai);
+            vi = itemView.findViewById(R.id.tv_detail_ngay_vi);
             itemView.setOnClickListener(this);
         }
 
@@ -102,5 +99,4 @@ public class RecyclerViewVerticalAdapter extends RecyclerView.Adapter<RecyclerVi
             void onClickListener(int position, View v);
         }
     }
-
 }

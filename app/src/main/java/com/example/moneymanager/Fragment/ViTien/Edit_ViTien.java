@@ -50,7 +50,7 @@ public class Edit_ViTien extends AppCompatActivity {
         });
 
 
-        btnXoa.setOnClickListener(new View.OnClickListener() {
+        btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);

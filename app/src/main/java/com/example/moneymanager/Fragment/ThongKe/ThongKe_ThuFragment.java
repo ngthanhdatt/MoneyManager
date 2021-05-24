@@ -14,15 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.anychart.AnyChart;
-import com.anychart.AnyChartView;
-import com.anychart.chart.common.dataentry.DataEntry;
-import com.anychart.chart.common.dataentry.ValueDataEntry;
-import com.anychart.charts.Pie;
-import com.anychart.enums.LegendLayout;
-import com.anychart.enums.Align;
-import com.anychart.chart.common.listener.Event;
-import com.anychart.chart.common.listener.ListenersInterface;
+//import com.anychart.AnyChart;
+//import com.anychart.AnyChartView;
+//import com.anychart.chart.common.dataentry.DataEntry;
+//import com.anychart.chart.common.dataentry.ValueDataEntry;
+//import com.anychart.charts.Pie;
+//import com.anychart.enums.LegendLayout;
+//import com.anychart.enums.Align;
+//import com.anychart.chart.common.listener.Event;
+//import com.anychart.chart.common.listener.ListenersInterface;
 import com.example.moneymanager.Adapter.FragmentThuChiAdaper;
 import com.example.moneymanager.Database.DatabaseHelper;
 import com.example.moneymanager.Model.LoaiThu;
@@ -44,7 +44,7 @@ import java.util.List;
 public class ThongKe_ThuFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private AnyChartView anyChartView;
+//    private AnyChartView anyChartView;
     TextView tvLuong, tvThuong, tvThemGio, tvKhac;
     PieChart pieChart;
 

@@ -1,7 +1,6 @@
 package com.example.moneymanager.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moneymanager.Fragment.ViTien.Edit_ViTien;
-import com.example.moneymanager.Model.Chi;
 import com.example.moneymanager.Model.Thu;
-import com.example.moneymanager.Model.ViTien;
 import com.example.moneymanager.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -21,13 +17,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewHangNgayAdapter extends RecyclerView.Adapter<RecyclerViewHangNgayAdapter.ViewHolder>{
+public class RecyclerViewThuHangNgayAdapter extends RecyclerView.Adapter<RecyclerViewThuHangNgayAdapter.ViewHolder>{
     private List<Thu> listThu;
     private Context context;
     private static final int MENU_ITEM_EDIT = 222;
     private static final int MENU_ITEM_DELETE = 444;
 
-    public RecyclerViewHangNgayAdapter() {
+    public RecyclerViewThuHangNgayAdapter() {
         this.listThu = new ArrayList<>();
     }
 
@@ -36,11 +32,11 @@ public class RecyclerViewHangNgayAdapter extends RecyclerView.Adapter<RecyclerVi
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_detail__hang_ngay, parent, false);
-        return new RecyclerViewHangNgayAdapter.ViewHolder(v);
+        return new RecyclerViewThuHangNgayAdapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull RecyclerViewHangNgayAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull RecyclerViewThuHangNgayAdapter.ViewHolder holder, int position) {
         Thu thu = listThu.get(position);
         holder.ngay.setText("Ngày: " + thu.getThoiGian());
         holder.tien.setText("Số tiền: " + thu.getSotien());

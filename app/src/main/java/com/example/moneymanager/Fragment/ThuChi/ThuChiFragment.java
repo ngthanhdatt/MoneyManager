@@ -56,13 +56,9 @@ public class ThuChiFragment extends Fragment {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 if(position == 0){
-                    tab.setText("Hằng Ngày");
-                } else if(position == 1){
-                    tab.setText("Ngày");
-                } else if(position == 2){
-                    tab.setText("Tuần");
-                } else if(position == 3){
-                    tab.setText("Tháng");
+                    tab.setText("Thu");
+                } else if(position == 1) {
+                    tab.setText("Chi");
                 }
             }
         }).attach();

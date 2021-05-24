@@ -13,7 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.moneymanager.Adapter.RecyclerViewHangNgayAdapter;
+import com.example.moneymanager.Adapter.RecyclerViewThuHangNgayAdapter;
 import com.example.moneymanager.Database.DatabaseHelper;
 import com.example.moneymanager.Model.Thu;
 import com.example.moneymanager.R;
@@ -26,7 +26,7 @@ public class Thu_HangNgayFragment extends Fragment {
     private RecyclerView recyclerView;
     private DatabaseHelper db;
     private List<Thu> listThu;
-    private RecyclerViewHangNgayAdapter adapter;
+    private RecyclerViewThuHangNgayAdapter adapter;
 
     public Thu_HangNgayFragment(){
 
@@ -46,7 +46,7 @@ public class Thu_HangNgayFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         listThu = db.getAllThu();
-        adapter = new RecyclerViewHangNgayAdapter();
+        adapter = new RecyclerViewThuHangNgayAdapter();
         recyclerView = view.findViewById(R.id.frag_recyclerView_thu_hangngay);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());

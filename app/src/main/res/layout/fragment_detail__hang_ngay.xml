@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             tools:text="Ngay" />
     </LinearLayout>
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:textSize="20sp"
+            android:textSize="18sp"
             tools:text="tien" />
 
         <TextView
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:textSize="20sp"
+            android:textSize="18sp"
             tools:text="the loai" />
 
     </LinearLayout>
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:textSize="20sp"
+            android:textSize="18sp"
             tools:text="vi" />
     </LinearLayout>
 

@@ -5,16 +5,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.moneymanager.Fragment.ThuChi.Chi_HangNgayFragment;
 import com.example.moneymanager.Fragment.ThuChi.ThuChi_HangNgayFragment;
 import com.example.moneymanager.Fragment.ThuChi.ThuChi_NgayFragment;
 import com.example.moneymanager.Fragment.ThuChi.ThuChi_ThangFragment;
 import com.example.moneymanager.Fragment.ThuChi.ThuChi_TuanFragment;
+import com.example.moneymanager.Fragment.ThuChi.Thu_HangNgayFragment;
 
 public class FragmentThuChiAdaper extends FragmentStateAdapter{
-    private final ThuChi_HangNgayFragment thuChi_hangNgayFragment = new ThuChi_HangNgayFragment();
-    private final ThuChi_NgayFragment thuChi_ngayFragment = new ThuChi_NgayFragment();
-    private final ThuChi_TuanFragment thuChi_tuanFragment = new ThuChi_TuanFragment();
-    private final ThuChi_ThangFragment thuChi_thangFragment = new ThuChi_ThangFragment();
+    private final Thu_HangNgayFragment thuHangNgayFragment= new Thu_HangNgayFragment();
+    private final Chi_HangNgayFragment chiHangNgayFragment = new Chi_HangNgayFragment();
 
     public FragmentThuChiAdaper(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -25,18 +25,14 @@ public class FragmentThuChiAdaper extends FragmentStateAdapter{
     public Fragment createFragment(int position) {
         switch (position){
             case 1:
-                return thuChi_ngayFragment;
-            case 2:
-                return thuChi_tuanFragment;
-            case 3:
-                return thuChi_thangFragment;
+                return chiHangNgayFragment;
             default:
-                return thuChi_hangNgayFragment;
+                return thuHangNgayFragment;
         }
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 2;
     }
 }

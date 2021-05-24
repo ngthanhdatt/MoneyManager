@@ -227,29 +227,16 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
             <Button
                 android:id="@+id/button_themthuchi"
-                android:layout_width="240dp"
+                android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Lưu"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/btn_round_corner"
-                />
-
-            <Button
-                android:id="@+id/button_tieptuc"
-                android:layout_width="120dp"
-                android:layout_height="60dp"
-                android:text="Tiếp tục"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/btn_round_corner"
-
                 />
         </androidx.appcompat.widget.Toolbar>
 

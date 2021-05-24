@@ -92,7 +92,7 @@ public class Them_ThuChi extends AppCompatActivity{
         back = findViewById(R.id.frag_Toolbar_ThemThuChi_back);
         back.setText("Thu");
         luu = findViewById(R.id.button_themthuchi);
-        tieptuc = findViewById(R.id.button_tieptuc);
+//        tieptuc = findViewById(R.id.button_tieptuc);
         editNgay = findViewById(R.id.edit_Ngay);
         editGio = findViewById(R.id.edit_Gio);
 
@@ -261,15 +261,12 @@ public class Them_ThuChi extends AppCompatActivity{
                         db.addChi(chi, viTien);
                     }
 
-
-
                 editTheloai.setText("");
                 editGhichu.setText("");
                 editVitien.setText("");
                 editSotien.setText("");
             }
         });
-
     }
 
     private void openBottomLoaiThu(){

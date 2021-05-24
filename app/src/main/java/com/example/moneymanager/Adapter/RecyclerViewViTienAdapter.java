@@ -1,26 +1,16 @@
 package com.example.moneymanager.Adapter;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.moneymanager.Fragment.ViTien.Edit_ViTien;
-import com.example.moneymanager.Fragment.ViTien.ViTienFragment;
 import com.example.moneymanager.R;
 import com.example.moneymanager.Model.ViTien;
 
@@ -29,13 +19,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewVerticalAdapter extends RecyclerView.Adapter<RecyclerViewVerticalAdapter.ViewHolder> {
+public class RecyclerViewViTienAdapter extends RecyclerView.Adapter<RecyclerViewViTienAdapter.ViewHolder> {
     private List<ViTien> listVitien;
     private Context context;
     private static final int MENU_ITEM_EDIT = 222;
     private static final int MENU_ITEM_DELETE = 444;
 
-    public RecyclerViewVerticalAdapter() {
+    public RecyclerViewViTienAdapter() {
         this.listVitien = new ArrayList<>();
     }
 
@@ -48,7 +38,7 @@ public class RecyclerViewVerticalAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewVerticalAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewViTienAdapter.ViewHolder holder, int position) {
         ViTien vi = listVitien.get(position);
         holder.title.setText("Tên ví: " + vi.getName());
         holder.content.setText("Số tiền: " + vi.getMoney());

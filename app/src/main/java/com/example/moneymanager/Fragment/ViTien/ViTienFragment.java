@@ -1,9 +1,6 @@
 package com.example.moneymanager.Fragment.ViTien;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,30 +8,21 @@ import androidx.annotation.Nullable;
 
 import androidx.fragment.app.Fragment;
 
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moneymanager.Adapter.BottomSheetDialog.InterfaceLoaiChi;
 import com.example.moneymanager.Adapter.BottomSheetDialog.InterfaceViTien;
-import com.example.moneymanager.Adapter.RecyclerViewVerticalAdapter;
-import com.example.moneymanager.Adapter.ViTienAdapter;
+import com.example.moneymanager.Adapter.RecyclerViewViTienAdapter;
 import com.example.moneymanager.Database.DatabaseHelper;
-import com.example.moneymanager.Fragment.ThuChi.BottomSheetDialog.BottomSheetDialog_ViTien;
-import com.example.moneymanager.MainActivity;
 import com.example.moneymanager.Model.ViTien;
 import com.example.moneymanager.R;
-import com.example.moneymanager.ResetPassword;
 import com.example.moneymanager.Them_ViTien;
 
 import org.jetbrains.annotations.NotNull;
@@ -48,7 +36,7 @@ public class ViTienFragment extends Fragment {
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private Button btnThemVi;
-    private RecyclerViewVerticalAdapter adapter;
+    private RecyclerViewViTienAdapter adapter;
 //    private ViTienAdapter adapter;
     private DatabaseHelper db;
     private List<ViTien> listVi;
@@ -80,7 +68,7 @@ public class ViTienFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         listVi = db.getAllViTien();
-        adapter = new RecyclerViewVerticalAdapter();
+        adapter = new RecyclerViewViTienAdapter();
 //        adapter = new ViTienAdapter(listVi, anInterface);
         db = new DatabaseHelper(getContext());
 

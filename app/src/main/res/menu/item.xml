@@ -4,21 +4,21 @@
 
     <item
         android:id="@+id/menu_hangngay"
-        android:icon="@android:drawable/btn_dialog"
+        android:icon="@android:drawable/ic_menu_today"
         android:title="Hằng Ngày" />
 <!--        app:showAsAction="always"-->
     <item
         android:id="@+id/menu_thongke"
-        android:icon="@android:drawable/btn_dialog"
+        android:icon="@android:drawable/ic_menu_my_calendar"
         android:title="Thống kê"/>
 
     <item
         android:title="Ví tiền"
-        android:icon="@android:drawable/btn_dialog"
+        android:icon="@android:drawable/ic_input_add"
         android:id="@+id/menu_vitien"/>
 
     <item
         android:title="Cài Đặt"
-        android:icon="@android:drawable/btn_dialog"
+        android:icon="@android:drawable/ic_popup_sync"
         android:id="@+id/menu_caidat"/>
 </menu>

@@ -1,26 +1,18 @@
 package com.example.moneymanager.Adapter.BottomSheetDialog;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.moneymanager.Adapter.RecyclerViewVerticalAdapter;
-import com.example.moneymanager.Model.LoaiChi;
 import com.example.moneymanager.R;
 import com.example.moneymanager.Model.ViTien;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DialogViTienAdapter extends RecyclerView.Adapter<DialogViTienAdapter.ItemViewHolder> {

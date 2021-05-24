@@ -6,10 +6,10 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.moneymanager.Fragment.ThuChi.Chi_HangNgayFragment;
-import com.example.moneymanager.Fragment.ThuChi.ThuChi_HangNgayFragment;
-import com.example.moneymanager.Fragment.ThuChi.ThuChi_NgayFragment;
-import com.example.moneymanager.Fragment.ThuChi.ThuChi_ThangFragment;
-import com.example.moneymanager.Fragment.ThuChi.ThuChi_TuanFragment;
+//import com.example.moneymanager.Fragment.ThuChi.ThuChi_HangNgayFragment;
+//import com.example.moneymanager.Fragment.ThuChi.ThuChi_NgayFragment;
+//import com.example.moneymanager.Fragment.ThuChi.ThuChi_ThangFragment;
+//import com.example.moneymanager.Fragment.ThuChi.ThuChi_TuanFragment;
 import com.example.moneymanager.Fragment.ThuChi.Thu_HangNgayFragment;
 
 public class FragmentThuChiAdaper extends FragmentStateAdapter{

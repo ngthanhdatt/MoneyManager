@@ -103,15 +103,22 @@ public class Edit_Thu extends AppCompatActivity {
         String vi = thu.getViTien().getName();
         String tien = String.valueOf(thu.getSotien());
         String ghichu = thu.getGhichu();
+        String thoiGian= thu.getThoiGian();
+        String ngay =thoiGian.substring(0,15);
+        String gio = thoiGian.substring(16,21);
+
         editVitien.setText(vi);
         editTheloai.setText(loai);
         editSotien.setText(tien);
         editGhichu.setText(ghichu);
+        editNgay.setText(ngay);
+        editGio.setText(gio);
 
-        String currentDate = new SimpleDateFormat("dd/MM/yyyy(EEE)", Locale.getDefault()).format(new Date());
-        editNgay.setText(currentDate);
-        String currentTime = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
-        editGio.setText(currentTime);
+
+//        String currentDate = new SimpleDateFormat("dd/MM/yyyy(EEE)", Locale.getDefault()).format(new Date());
+//        editNgay.setText(currentDate);
+//        String currentTime = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+//        editGio.setText(currentTime);
 
         editNgay.setOnClickListener(new View.OnClickListener() {
             @Override

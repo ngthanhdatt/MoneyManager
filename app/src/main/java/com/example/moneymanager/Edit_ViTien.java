@@ -38,8 +38,8 @@ public class Edit_ViTien extends AppCompatActivity {
         ViTien viTien = (ViTien) intent.getSerializableExtra("vi");
         String name=viTien.getName();
         String money =String.valueOf(viTien.getMoney());
-       etLoaivi.setText(name);
-       etSotien.setText(money);
+        etLoaivi.setText(name);
+        etSotien.setText(money);
 
         btnluu.setOnClickListener(new View.OnClickListener() {
             @Override
